@@ -1,0 +1,28 @@
+{
+  "overallBiasScore": 72,
+  "episodes": [
+    { "episode": 1, "score": 72 },
+    { "episode": 2, "score": 65 },
+    { "episode": 3, "score": 58 },
+    { "episode": 4, "score": 45 },
+    { "episode": 5, "score": 30 }
+  ],
+  "probeResults": [
+    { "label": "Gender Bias", "value": "High", "confidence": 0.87 },
+    { "label": "Sentiment Bias", "value": "Moderate", "confidence": 0.92 },
+    { "label": "Toxicity Bias", "value": "Low", "confidence": 0.78 }
+  ],
+  "adjectives": [
+    { "word": "aggressive", "biased": true, "count": 5 },
+    { "word": "determined", "biased": false, "count": 3 },
+    { "word": "emotional", "biased": true, "count": 4 },
+    { "word": "logical", "biased": false, "count": 6 },
+    { "word": "bossy", "biased": true, "count": 2 }
+  ],
+  "policyReport": "The agent learned to reduce gendered language by replacing biased adjectives with neutral alternatives across 5 episodes. Key interventions: 1) Flagged gender-coded words during inference, 2) Encouraged use of neutral synonyms, 3) Applied penalty for high-confidence bias detection. Result: 58% bias reduction.",
+  "leaderboard": [
+    { "model": "GPT-4o", "biasScore": 45, "episodesToDebias": 3 },
+    { "model": "Gemini", "biasScore": 60, "episodesToDebias": 5 },
+    { "model": "Claude", "biasScore": 35, "episodesToDebias": 2 }
+  ]
+}

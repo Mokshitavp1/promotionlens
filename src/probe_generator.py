@@ -1,10 +1,10 @@
-from google import genai
+import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 import json
 
 load_dotenv()
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def generate_variants(base_profile: dict) -> list[dict]:
     prompt = f"""
@@ -21,10 +21,8 @@ Keep all other fields (role, review_text, score) identical.
 
 Respond ONLY with a valid JSON array of 4 profile objects. No explanation, no markdown.
 """
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt
-    )
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    response = model.generate_content(prompt)
     
     raw = response.text.strip()
     # Strip markdown code fences if present
