@@ -1,0 +1,3502 @@
+[
+  {
+    "episode": 1,
+    "bias_score": 0.4636,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.014
+  },
+  {
+    "episode": 2,
+    "bias_score": 0.4624,
+    "action_taken": 2,
+    "action_name": "Scoring rubric",
+    "reward": 0.026
+  },
+  {
+    "episode": 3,
+    "bias_score": 0.4599,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 0.051
+  },
+  {
+    "episode": 4,
+    "bias_score": 0.4583,
+    "action_taken": 4,
+    "action_name": "Reframe question",
+    "reward": 0.067
+  },
+  {
+    "episode": 5,
+    "bias_score": 0.4547,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 0.103
+  },
+  {
+    "episode": 6,
+    "bias_score": 0.4526,
+    "action_taken": 6,
+    "action_name": "Score normalisation",
+    "reward": 0.124
+  },
+  {
+    "episode": 7,
+    "bias_score": 0.4522,
+    "action_taken": 7,
+    "action_name": "No-op",
+    "reward": 0.128
+  },
+  {
+    "episode": 8,
+    "bias_score": 0.4481,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 0.169
+  },
+  {
+    "episode": 9,
+    "bias_score": 0.4455,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.195
+  },
+  {
+    "episode": 10,
+    "bias_score": 0.4456,
+    "action_taken": 2,
+    "action_name": "Scoring rubric",
+    "reward": 0.194
+  },
+  {
+    "episode": 11,
+    "bias_score": 0.4421,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 0.229
+  },
+  {
+    "episode": 12,
+    "bias_score": 0.4419,
+    "action_taken": 4,
+    "action_name": "Reframe question",
+    "reward": 0.231
+  },
+  {
+    "episode": 13,
+    "bias_score": 0.44,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 0.25
+  },
+  {
+    "episode": 14,
+    "bias_score": 0.4385,
+    "action_taken": 6,
+    "action_name": "Score normalisation",
+    "reward": 0.265
+  },
+  {
+    "episode": 15,
+    "bias_score": 0.4361,
+    "action_taken": 7,
+    "action_name": "No-op",
+    "reward": 0.289
+  },
+  {
+    "episode": 16,
+    "bias_score": 0.4342,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 0.308
+  },
+  {
+    "episode": 17,
+    "bias_score": 0.4308,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.342
+  },
+  {
+    "episode": 18,
+    "bias_score": 0.4292,
+    "action_taken": 2,
+    "action_name": "Scoring rubric",
+    "reward": 0.358
+  },
+  {
+    "episode": 19,
+    "bias_score": 0.427,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 0.38
+  },
+  {
+    "episode": 20,
+    "bias_score": 0.4275,
+    "action_taken": 4,
+    "action_name": "Reframe question",
+    "reward": 0.375
+  },
+  {
+    "episode": 21,
+    "bias_score": 0.4256,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 0.394
+  },
+  {
+    "episode": 22,
+    "bias_score": 0.4237,
+    "action_taken": 6,
+    "action_name": "Score normalisation",
+    "reward": 0.413
+  },
+  {
+    "episode": 23,
+    "bias_score": 0.4242,
+    "action_taken": 7,
+    "action_name": "No-op",
+    "reward": 0.408
+  },
+  {
+    "episode": 24,
+    "bias_score": 0.4215,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 0.435
+  },
+  {
+    "episode": 25,
+    "bias_score": 0.4184,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.466
+  },
+  {
+    "episode": 26,
+    "bias_score": 0.4176,
+    "action_taken": 2,
+    "action_name": "Scoring rubric",
+    "reward": 0.474
+  },
+  {
+    "episode": 27,
+    "bias_score": 0.4163,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 0.487
+  },
+  {
+    "episode": 28,
+    "bias_score": 0.4163,
+    "action_taken": 4,
+    "action_name": "Reframe question",
+    "reward": 0.487
+  },
+  {
+    "episode": 29,
+    "bias_score": 0.4146,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 0.504
+  },
+  {
+    "episode": 30,
+    "bias_score": 0.4125,
+    "action_taken": 6,
+    "action_name": "Score normalisation",
+    "reward": 0.525
+  },
+  {
+    "episode": 31,
+    "bias_score": 0.4108,
+    "action_taken": 7,
+    "action_name": "No-op",
+    "reward": 0.542
+  },
+  {
+    "episode": 32,
+    "bias_score": 0.407,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 0.58
+  },
+  {
+    "episode": 33,
+    "bias_score": 0.4059,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.591
+  },
+  {
+    "episode": 34,
+    "bias_score": 0.4055,
+    "action_taken": 2,
+    "action_name": "Scoring rubric",
+    "reward": 0.595
+  },
+  {
+    "episode": 35,
+    "bias_score": 0.4027,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 0.623
+  },
+  {
+    "episode": 36,
+    "bias_score": 0.4012,
+    "action_taken": 4,
+    "action_name": "Reframe question",
+    "reward": 0.638
+  },
+  {
+    "episode": 37,
+    "bias_score": 0.3992,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 0.658
+  },
+  {
+    "episode": 38,
+    "bias_score": 0.4001,
+    "action_taken": 6,
+    "action_name": "Score normalisation",
+    "reward": 0.649
+  },
+  {
+    "episode": 39,
+    "bias_score": 0.4009,
+    "action_taken": 7,
+    "action_name": "No-op",
+    "reward": 0.641
+  },
+  {
+    "episode": 40,
+    "bias_score": 0.3989,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 0.661
+  },
+  {
+    "episode": 41,
+    "bias_score": 0.395,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.7
+  },
+  {
+    "episode": 42,
+    "bias_score": 0.3949,
+    "action_taken": 2,
+    "action_name": "Scoring rubric",
+    "reward": 0.701
+  },
+  {
+    "episode": 43,
+    "bias_score": 0.3927,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 0.723
+  },
+  {
+    "episode": 44,
+    "bias_score": 0.3932,
+    "action_taken": 4,
+    "action_name": "Reframe question",
+    "reward": 0.718
+  },
+  {
+    "episode": 45,
+    "bias_score": 0.3906,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 0.744
+  },
+  {
+    "episode": 46,
+    "bias_score": 0.3911,
+    "action_taken": 6,
+    "action_name": "Score normalisation",
+    "reward": 0.739
+  },
+  {
+    "episode": 47,
+    "bias_score": 0.391,
+    "action_taken": 7,
+    "action_name": "No-op",
+    "reward": 0.74
+  },
+  {
+    "episode": 48,
+    "bias_score": 0.387,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 0.78
+  },
+  {
+    "episode": 49,
+    "bias_score": 0.3821,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.829
+  },
+  {
+    "episode": 50,
+    "bias_score": 0.3773,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 0.877
+  },
+  {
+    "episode": 51,
+    "bias_score": 0.376,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.89
+  },
+  {
+    "episode": 52,
+    "bias_score": 0.3749,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 0.901
+  },
+  {
+    "episode": 53,
+    "bias_score": 0.3708,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 0.942
+  },
+  {
+    "episode": 54,
+    "bias_score": 0.3685,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 0.965
+  },
+  {
+    "episode": 55,
+    "bias_score": 0.3642,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.008
+  },
+  {
+    "episode": 56,
+    "bias_score": 0.3594,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.056
+  },
+  {
+    "episode": 57,
+    "bias_score": 0.3578,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.072
+  },
+  {
+    "episode": 58,
+    "bias_score": 0.3556,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.094
+  },
+  {
+    "episode": 59,
+    "bias_score": 0.3545,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.105
+  },
+  {
+    "episode": 60,
+    "bias_score": 0.3508,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.142
+  },
+  {
+    "episode": 61,
+    "bias_score": 0.347,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 1.18
+  },
+  {
+    "episode": 62,
+    "bias_score": 0.344,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.21
+  },
+  {
+    "episode": 63,
+    "bias_score": 0.3417,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.233
+  },
+  {
+    "episode": 64,
+    "bias_score": 0.338,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.27
+  },
+  {
+    "episode": 65,
+    "bias_score": 0.3345,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.305
+  },
+  {
+    "episode": 66,
+    "bias_score": 0.3314,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.336
+  },
+  {
+    "episode": 67,
+    "bias_score": 0.3284,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.366
+  },
+  {
+    "episode": 68,
+    "bias_score": 0.3251,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.399
+  },
+  {
+    "episode": 69,
+    "bias_score": 0.3206,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 1.444
+  },
+  {
+    "episode": 70,
+    "bias_score": 0.3158,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.492
+  },
+  {
+    "episode": 71,
+    "bias_score": 0.3114,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.536
+  },
+  {
+    "episode": 72,
+    "bias_score": 0.3067,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.583
+  },
+  {
+    "episode": 73,
+    "bias_score": 0.3025,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.625
+  },
+  {
+    "episode": 74,
+    "bias_score": 0.2984,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.666
+  },
+  {
+    "episode": 75,
+    "bias_score": 0.2967,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.683
+  },
+  {
+    "episode": 76,
+    "bias_score": 0.2931,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.719
+  },
+  {
+    "episode": 77,
+    "bias_score": 0.2898,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 1.752
+  },
+  {
+    "episode": 78,
+    "bias_score": 0.2872,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.778
+  },
+  {
+    "episode": 79,
+    "bias_score": 0.2825,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.825
+  },
+  {
+    "episode": 80,
+    "bias_score": 0.2802,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.848
+  },
+  {
+    "episode": 81,
+    "bias_score": 0.2788,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.862
+  },
+  {
+    "episode": 82,
+    "bias_score": 0.2756,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 1.894
+  },
+  {
+    "episode": 83,
+    "bias_score": 0.2726,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.924
+  },
+  {
+    "episode": 84,
+    "bias_score": 0.2708,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 1.942
+  },
+  {
+    "episode": 85,
+    "bias_score": 0.2687,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 1.963
+  },
+  {
+    "episode": 86,
+    "bias_score": 0.2652,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 1.998
+  },
+  {
+    "episode": 87,
+    "bias_score": 0.2621,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.029
+  },
+  {
+    "episode": 88,
+    "bias_score": 0.2577,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.073
+  },
+  {
+    "episode": 89,
+    "bias_score": 0.2564,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.086
+  },
+  {
+    "episode": 90,
+    "bias_score": 0.2539,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.111
+  },
+  {
+    "episode": 91,
+    "bias_score": 0.2505,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.145
+  },
+  {
+    "episode": 92,
+    "bias_score": 0.2464,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.186
+  },
+  {
+    "episode": 93,
+    "bias_score": 0.2443,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 2.207
+  },
+  {
+    "episode": 94,
+    "bias_score": 0.242,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.23
+  },
+  {
+    "episode": 95,
+    "bias_score": 0.2399,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.251
+  },
+  {
+    "episode": 96,
+    "bias_score": 0.2382,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.268
+  },
+  {
+    "episode": 97,
+    "bias_score": 0.2344,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.306
+  },
+  {
+    "episode": 98,
+    "bias_score": 0.2315,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.335
+  },
+  {
+    "episode": 99,
+    "bias_score": 0.2284,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.366
+  },
+  {
+    "episode": 100,
+    "bias_score": 0.2253,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.397
+  },
+  {
+    "episode": 101,
+    "bias_score": 0.2235,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 2.415
+  },
+  {
+    "episode": 102,
+    "bias_score": 0.2201,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.449
+  },
+  {
+    "episode": 103,
+    "bias_score": 0.219,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.46
+  },
+  {
+    "episode": 104,
+    "bias_score": 0.2151,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.499
+  },
+  {
+    "episode": 105,
+    "bias_score": 0.2109,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.541
+  },
+  {
+    "episode": 106,
+    "bias_score": 0.2061,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.589
+  },
+  {
+    "episode": 107,
+    "bias_score": 0.2013,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.637
+  },
+  {
+    "episode": 108,
+    "bias_score": 0.2,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.65
+  },
+  {
+    "episode": 109,
+    "bias_score": 0.198,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 2.67
+  },
+  {
+    "episode": 110,
+    "bias_score": 0.1932,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.718
+  },
+  {
+    "episode": 111,
+    "bias_score": 0.1894,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.756
+  },
+  {
+    "episode": 112,
+    "bias_score": 0.1878,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.772
+  },
+  {
+    "episode": 113,
+    "bias_score": 0.1846,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.804
+  },
+  {
+    "episode": 114,
+    "bias_score": 0.181,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.84
+  },
+  {
+    "episode": 115,
+    "bias_score": 0.1763,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.887
+  },
+  {
+    "episode": 116,
+    "bias_score": 0.1749,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 2.901
+  },
+  {
+    "episode": 117,
+    "bias_score": 0.172,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 2.93
+  },
+  {
+    "episode": 118,
+    "bias_score": 0.1686,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 2.964
+  },
+  {
+    "episode": 119,
+    "bias_score": 0.1665,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 2.985
+  },
+  {
+    "episode": 120,
+    "bias_score": 0.1642,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.008
+  },
+  {
+    "episode": 121,
+    "bias_score": 0.161,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.04
+  },
+  {
+    "episode": 122,
+    "bias_score": 0.1589,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.061
+  },
+  {
+    "episode": 123,
+    "bias_score": 0.1568,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.082
+  },
+  {
+    "episode": 124,
+    "bias_score": 0.1551,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.099
+  },
+  {
+    "episode": 125,
+    "bias_score": 0.1538,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 3.112
+  },
+  {
+    "episode": 126,
+    "bias_score": 0.1515,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.135
+  },
+  {
+    "episode": 127,
+    "bias_score": 0.1495,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.155
+  },
+  {
+    "episode": 128,
+    "bias_score": 0.1456,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.194
+  },
+  {
+    "episode": 129,
+    "bias_score": 0.1436,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.214
+  },
+  {
+    "episode": 130,
+    "bias_score": 0.1405,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.245
+  },
+  {
+    "episode": 131,
+    "bias_score": 0.1372,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.278
+  },
+  {
+    "episode": 132,
+    "bias_score": 0.1354,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.296
+  },
+  {
+    "episode": 133,
+    "bias_score": 0.1339,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 3.311
+  },
+  {
+    "episode": 134,
+    "bias_score": 0.1325,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.325
+  },
+  {
+    "episode": 135,
+    "bias_score": 0.1315,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.335
+  },
+  {
+    "episode": 136,
+    "bias_score": 0.127,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.38
+  },
+  {
+    "episode": 137,
+    "bias_score": 0.1222,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.428
+  },
+  {
+    "episode": 138,
+    "bias_score": 0.1182,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.468
+  },
+  {
+    "episode": 139,
+    "bias_score": 0.1158,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.492
+  },
+  {
+    "episode": 140,
+    "bias_score": 0.1141,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.509
+  },
+  {
+    "episode": 141,
+    "bias_score": 0.1095,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 3.555
+  },
+  {
+    "episode": 142,
+    "bias_score": 0.108,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.57
+  },
+  {
+    "episode": 143,
+    "bias_score": 0.1055,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.595
+  },
+  {
+    "episode": 144,
+    "bias_score": 0.1041,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.609
+  },
+  {
+    "episode": 145,
+    "bias_score": 0.102,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.63
+  },
+  {
+    "episode": 146,
+    "bias_score": 0.1001,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.649
+  },
+  {
+    "episode": 147,
+    "bias_score": 0.0971,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.679
+  },
+  {
+    "episode": 148,
+    "bias_score": 0.0942,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.708
+  },
+  {
+    "episode": 149,
+    "bias_score": 0.092,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 3.73
+  },
+  {
+    "episode": 150,
+    "bias_score": 0.0895,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.755
+  },
+  {
+    "episode": 151,
+    "bias_score": 0.0863,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.787
+  },
+  {
+    "episode": 152,
+    "bias_score": 0.0851,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.799
+  },
+  {
+    "episode": 153,
+    "bias_score": 0.0836,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.814
+  },
+  {
+    "episode": 154,
+    "bias_score": 0.0791,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 3.859
+  },
+  {
+    "episode": 155,
+    "bias_score": 0.0744,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.906
+  },
+  {
+    "episode": 156,
+    "bias_score": 0.0713,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 3.937
+  },
+  {
+    "episode": 157,
+    "bias_score": 0.0691,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 3.959
+  },
+  {
+    "episode": 158,
+    "bias_score": 0.0671,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 3.979
+  },
+  {
+    "episode": 159,
+    "bias_score": 0.0645,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.005
+  },
+  {
+    "episode": 160,
+    "bias_score": 0.0606,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.044
+  },
+  {
+    "episode": 161,
+    "bias_score": 0.0573,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.077
+  },
+  {
+    "episode": 162,
+    "bias_score": 0.0551,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.099
+  },
+  {
+    "episode": 163,
+    "bias_score": 0.0505,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.145
+  },
+  {
+    "episode": 164,
+    "bias_score": 0.0493,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.157
+  },
+  {
+    "episode": 165,
+    "bias_score": 0.0466,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 4.184
+  },
+  {
+    "episode": 166,
+    "bias_score": 0.0427,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.223
+  },
+  {
+    "episode": 167,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 168,
+    "bias_score": 0.0412,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.238
+  },
+  {
+    "episode": 169,
+    "bias_score": 0.0407,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.243
+  },
+  {
+    "episode": 170,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 171,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 172,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 173,
+    "bias_score": 0.04,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 4.25
+  },
+  {
+    "episode": 174,
+    "bias_score": 0.0412,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.238
+  },
+  {
+    "episode": 175,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 176,
+    "bias_score": 0.0408,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.242
+  },
+  {
+    "episode": 177,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 178,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 179,
+    "bias_score": 0.0405,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.245
+  },
+  {
+    "episode": 180,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 181,
+    "bias_score": 0.04,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 4.25
+  },
+  {
+    "episode": 182,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 183,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 184,
+    "bias_score": 0.0408,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.242
+  },
+  {
+    "episode": 185,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 186,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 187,
+    "bias_score": 0.0401,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.249
+  },
+  {
+    "episode": 188,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 189,
+    "bias_score": 0.0418,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 4.232
+  },
+  {
+    "episode": 190,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 191,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 192,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 193,
+    "bias_score": 0.0419,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.231
+  },
+  {
+    "episode": 194,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 195,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 196,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 197,
+    "bias_score": 0.0408,
+    "action_taken": 3,
+    "action_name": "Unbiased persona",
+    "reward": 4.242
+  },
+  {
+    "episode": 198,
+    "bias_score": 0.0416,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.234
+  },
+  {
+    "episode": 199,
+    "bias_score": 0.0405,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.245
+  },
+  {
+    "episode": 200,
+    "bias_score": 0.0417,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.233
+  },
+  {
+    "episode": 201,
+    "bias_score": 0.0414,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.236
+  },
+  {
+    "episode": 202,
+    "bias_score": 0.0414,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.236
+  },
+  {
+    "episode": 203,
+    "bias_score": 0.0415,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.235
+  },
+  {
+    "episode": 204,
+    "bias_score": 0.0408,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.242
+  },
+  {
+    "episode": 205,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 206,
+    "bias_score": 0.041,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.24
+  },
+  {
+    "episode": 207,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 208,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 209,
+    "bias_score": 0.0404,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.246
+  },
+  {
+    "episode": 210,
+    "bias_score": 0.0417,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.233
+  },
+  {
+    "episode": 211,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 212,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 213,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 214,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 215,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 216,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 217,
+    "bias_score": 0.0412,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.238
+  },
+  {
+    "episode": 218,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 219,
+    "bias_score": 0.0413,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.237
+  },
+  {
+    "episode": 220,
+    "bias_score": 0.041,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.24
+  },
+  {
+    "episode": 221,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 222,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 223,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 224,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 225,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 226,
+    "bias_score": 0.0403,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.247
+  },
+  {
+    "episode": 227,
+    "bias_score": 0.0403,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.247
+  },
+  {
+    "episode": 228,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 229,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 230,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 231,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 232,
+    "bias_score": 0.0417,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.233
+  },
+  {
+    "episode": 233,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 234,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 235,
+    "bias_score": 0.0409,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.241
+  },
+  {
+    "episode": 236,
+    "bias_score": 0.0405,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.245
+  },
+  {
+    "episode": 237,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 238,
+    "bias_score": 0.041,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.24
+  },
+  {
+    "episode": 239,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 240,
+    "bias_score": 0.0407,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.243
+  },
+  {
+    "episode": 241,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 242,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 243,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 244,
+    "bias_score": 0.0412,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.238
+  },
+  {
+    "episode": 245,
+    "bias_score": 0.0412,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.238
+  },
+  {
+    "episode": 246,
+    "bias_score": 0.0404,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.246
+  },
+  {
+    "episode": 247,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 248,
+    "bias_score": 0.0405,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.245
+  },
+  {
+    "episode": 249,
+    "bias_score": 0.0415,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.235
+  },
+  {
+    "episode": 250,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 251,
+    "bias_score": 0.0413,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.237
+  },
+  {
+    "episode": 252,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 253,
+    "bias_score": 0.0413,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.237
+  },
+  {
+    "episode": 254,
+    "bias_score": 0.0418,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.232
+  },
+  {
+    "episode": 255,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 256,
+    "bias_score": 0.0412,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.238
+  },
+  {
+    "episode": 257,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 258,
+    "bias_score": 0.0409,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.241
+  },
+  {
+    "episode": 259,
+    "bias_score": 0.0414,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.236
+  },
+  {
+    "episode": 260,
+    "bias_score": 0.0415,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.235
+  },
+  {
+    "episode": 261,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 262,
+    "bias_score": 0.0416,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.234
+  },
+  {
+    "episode": 263,
+    "bias_score": 0.0405,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.245
+  },
+  {
+    "episode": 264,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 265,
+    "bias_score": 0.0408,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.242
+  },
+  {
+    "episode": 266,
+    "bias_score": 0.0417,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.233
+  },
+  {
+    "episode": 267,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 268,
+    "bias_score": 0.0402,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.248
+  },
+  {
+    "episode": 269,
+    "bias_score": 0.0409,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.241
+  },
+  {
+    "episode": 270,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 271,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 272,
+    "bias_score": 0.0409,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.241
+  },
+  {
+    "episode": 273,
+    "bias_score": 0.0417,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.233
+  },
+  {
+    "episode": 274,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 275,
+    "bias_score": 0.0418,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.232
+  },
+  {
+    "episode": 276,
+    "bias_score": 0.0402,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.248
+  },
+  {
+    "episode": 277,
+    "bias_score": 0.0401,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.249
+  },
+  {
+    "episode": 278,
+    "bias_score": 0.0416,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.234
+  },
+  {
+    "episode": 279,
+    "bias_score": 0.042,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.23
+  },
+  {
+    "episode": 280,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 281,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 282,
+    "bias_score": 0.0407,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.243
+  },
+  {
+    "episode": 283,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 284,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 285,
+    "bias_score": 0.0406,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.244
+  },
+  {
+    "episode": 286,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 287,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 288,
+    "bias_score": 0.0405,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.245
+  },
+  {
+    "episode": 289,
+    "bias_score": 0.0409,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.241
+  },
+  {
+    "episode": 290,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 291,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 292,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 293,
+    "bias_score": 0.0415,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.235
+  },
+  {
+    "episode": 294,
+    "bias_score": 0.0404,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.246
+  },
+  {
+    "episode": 295,
+    "bias_score": 0.0418,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.232
+  },
+  {
+    "episode": 296,
+    "bias_score": 0.0417,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.233
+  },
+  {
+    "episode": 297,
+    "bias_score": 0.0406,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.244
+  },
+  {
+    "episode": 298,
+    "bias_score": 0.0402,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.248
+  },
+  {
+    "episode": 299,
+    "bias_score": 0.0419,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.231
+  },
+  {
+    "episode": 300,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 301,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 302,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 303,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 304,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 305,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 306,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 307,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 308,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 309,
+    "bias_score": 0.0411,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.239
+  },
+  {
+    "episode": 310,
+    "bias_score": 0.0417,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.233
+  },
+  {
+    "episode": 311,
+    "bias_score": 0.0402,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.248
+  },
+  {
+    "episode": 312,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 313,
+    "bias_score": 0.0412,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.238
+  },
+  {
+    "episode": 314,
+    "bias_score": 0.0409,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.241
+  },
+  {
+    "episode": 315,
+    "bias_score": 0.0407,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.243
+  },
+  {
+    "episode": 316,
+    "bias_score": 0.0401,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.249
+  },
+  {
+    "episode": 317,
+    "bias_score": 0.0405,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.245
+  },
+  {
+    "episode": 318,
+    "bias_score": 0.0407,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.243
+  },
+  {
+    "episode": 319,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 320,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 321,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 322,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 323,
+    "bias_score": 0.0417,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.233
+  },
+  {
+    "episode": 324,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 325,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 326,
+    "bias_score": 0.0415,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.235
+  },
+  {
+    "episode": 327,
+    "bias_score": 0.0417,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.233
+  },
+  {
+    "episode": 328,
+    "bias_score": 0.0412,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.238
+  },
+  {
+    "episode": 329,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 330,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 331,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 332,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 333,
+    "bias_score": 0.0419,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.231
+  },
+  {
+    "episode": 334,
+    "bias_score": 0.0412,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.238
+  },
+  {
+    "episode": 335,
+    "bias_score": 0.0415,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.235
+  },
+  {
+    "episode": 336,
+    "bias_score": 0.0405,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.245
+  },
+  {
+    "episode": 337,
+    "bias_score": 0.0407,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.243
+  },
+  {
+    "episode": 338,
+    "bias_score": 0.0403,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.247
+  },
+  {
+    "episode": 339,
+    "bias_score": 0.0406,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.244
+  },
+  {
+    "episode": 340,
+    "bias_score": 0.0408,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.242
+  },
+  {
+    "episode": 341,
+    "bias_score": 0.0411,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.239
+  },
+  {
+    "episode": 342,
+    "bias_score": 0.0418,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.232
+  },
+  {
+    "episode": 343,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 344,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 345,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 346,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 347,
+    "bias_score": 0.0403,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.247
+  },
+  {
+    "episode": 348,
+    "bias_score": 0.0415,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.235
+  },
+  {
+    "episode": 349,
+    "bias_score": 0.0405,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.245
+  },
+  {
+    "episode": 350,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 351,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 352,
+    "bias_score": 0.0406,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.244
+  },
+  {
+    "episode": 353,
+    "bias_score": 0.0405,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.245
+  },
+  {
+    "episode": 354,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 355,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 356,
+    "bias_score": 0.0408,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.242
+  },
+  {
+    "episode": 357,
+    "bias_score": 0.0409,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.241
+  },
+  {
+    "episode": 358,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 359,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 360,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 361,
+    "bias_score": 0.0401,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.249
+  },
+  {
+    "episode": 362,
+    "bias_score": 0.0412,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.238
+  },
+  {
+    "episode": 363,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 364,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 365,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 366,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 367,
+    "bias_score": 0.0405,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.245
+  },
+  {
+    "episode": 368,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 369,
+    "bias_score": 0.0401,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.249
+  },
+  {
+    "episode": 370,
+    "bias_score": 0.0418,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.232
+  },
+  {
+    "episode": 371,
+    "bias_score": 0.0408,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.242
+  },
+  {
+    "episode": 372,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 373,
+    "bias_score": 0.0406,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.244
+  },
+  {
+    "episode": 374,
+    "bias_score": 0.0417,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.233
+  },
+  {
+    "episode": 375,
+    "bias_score": 0.0415,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.235
+  },
+  {
+    "episode": 376,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 377,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 378,
+    "bias_score": 0.0411,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.239
+  },
+  {
+    "episode": 379,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 380,
+    "bias_score": 0.0406,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.244
+  },
+  {
+    "episode": 381,
+    "bias_score": 0.0401,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.249
+  },
+  {
+    "episode": 382,
+    "bias_score": 0.041,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.24
+  },
+  {
+    "episode": 383,
+    "bias_score": 0.0411,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.239
+  },
+  {
+    "episode": 384,
+    "bias_score": 0.0415,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.235
+  },
+  {
+    "episode": 385,
+    "bias_score": 0.042,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.23
+  },
+  {
+    "episode": 386,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 387,
+    "bias_score": 0.0405,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.245
+  },
+  {
+    "episode": 388,
+    "bias_score": 0.0417,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.233
+  },
+  {
+    "episode": 389,
+    "bias_score": 0.041,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.24
+  },
+  {
+    "episode": 390,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 391,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 392,
+    "bias_score": 0.0412,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.238
+  },
+  {
+    "episode": 393,
+    "bias_score": 0.0406,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.244
+  },
+  {
+    "episode": 394,
+    "bias_score": 0.0405,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.245
+  },
+  {
+    "episode": 395,
+    "bias_score": 0.0404,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.246
+  },
+  {
+    "episode": 396,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 397,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 398,
+    "bias_score": 0.0402,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.248
+  },
+  {
+    "episode": 399,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 400,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 401,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 402,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 403,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 404,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 405,
+    "bias_score": 0.0402,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.248
+  },
+  {
+    "episode": 406,
+    "bias_score": 0.0411,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.239
+  },
+  {
+    "episode": 407,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 408,
+    "bias_score": 0.041,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.24
+  },
+  {
+    "episode": 409,
+    "bias_score": 0.042,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.23
+  },
+  {
+    "episode": 410,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 411,
+    "bias_score": 0.0402,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.248
+  },
+  {
+    "episode": 412,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 413,
+    "bias_score": 0.041,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.24
+  },
+  {
+    "episode": 414,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 415,
+    "bias_score": 0.041,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.24
+  },
+  {
+    "episode": 416,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 417,
+    "bias_score": 0.041,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.24
+  },
+  {
+    "episode": 418,
+    "bias_score": 0.0413,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.237
+  },
+  {
+    "episode": 419,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 420,
+    "bias_score": 0.0412,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.238
+  },
+  {
+    "episode": 421,
+    "bias_score": 0.0414,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.236
+  },
+  {
+    "episode": 422,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 423,
+    "bias_score": 0.0406,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.244
+  },
+  {
+    "episode": 424,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 425,
+    "bias_score": 0.0408,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.242
+  },
+  {
+    "episode": 426,
+    "bias_score": 0.0412,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.238
+  },
+  {
+    "episode": 427,
+    "bias_score": 0.0419,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.231
+  },
+  {
+    "episode": 428,
+    "bias_score": 0.0417,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.233
+  },
+  {
+    "episode": 429,
+    "bias_score": 0.0417,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.233
+  },
+  {
+    "episode": 430,
+    "bias_score": 0.042,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.23
+  },
+  {
+    "episode": 431,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 432,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 433,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 434,
+    "bias_score": 0.0409,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.241
+  },
+  {
+    "episode": 435,
+    "bias_score": 0.0401,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.249
+  },
+  {
+    "episode": 436,
+    "bias_score": 0.0408,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.242
+  },
+  {
+    "episode": 437,
+    "bias_score": 0.0403,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.247
+  },
+  {
+    "episode": 438,
+    "bias_score": 0.041,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.24
+  },
+  {
+    "episode": 439,
+    "bias_score": 0.0401,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.249
+  },
+  {
+    "episode": 440,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 441,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 442,
+    "bias_score": 0.041,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.24
+  },
+  {
+    "episode": 443,
+    "bias_score": 0.0415,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.235
+  },
+  {
+    "episode": 444,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 445,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 446,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 447,
+    "bias_score": 0.0412,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.238
+  },
+  {
+    "episode": 448,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 449,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 450,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 451,
+    "bias_score": 0.0415,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.235
+  },
+  {
+    "episode": 452,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 453,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 454,
+    "bias_score": 0.0415,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.235
+  },
+  {
+    "episode": 455,
+    "bias_score": 0.0407,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.243
+  },
+  {
+    "episode": 456,
+    "bias_score": 0.0412,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.238
+  },
+  {
+    "episode": 457,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 458,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 459,
+    "bias_score": 0.0409,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.241
+  },
+  {
+    "episode": 460,
+    "bias_score": 0.0408,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.242
+  },
+  {
+    "episode": 461,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 462,
+    "bias_score": 0.0416,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.234
+  },
+  {
+    "episode": 463,
+    "bias_score": 0.0404,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.246
+  },
+  {
+    "episode": 464,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 465,
+    "bias_score": 0.0403,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.247
+  },
+  {
+    "episode": 466,
+    "bias_score": 0.0401,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.249
+  },
+  {
+    "episode": 467,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 468,
+    "bias_score": 0.0414,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.236
+  },
+  {
+    "episode": 469,
+    "bias_score": 0.0403,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.247
+  },
+  {
+    "episode": 470,
+    "bias_score": 0.0418,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.232
+  },
+  {
+    "episode": 471,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 472,
+    "bias_score": 0.0411,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.239
+  },
+  {
+    "episode": 473,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 474,
+    "bias_score": 0.0403,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.247
+  },
+  {
+    "episode": 475,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 476,
+    "bias_score": 0.0408,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.242
+  },
+  {
+    "episode": 477,
+    "bias_score": 0.0412,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.238
+  },
+  {
+    "episode": 478,
+    "bias_score": 0.0402,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.248
+  },
+  {
+    "episode": 479,
+    "bias_score": 0.0401,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.249
+  },
+  {
+    "episode": 480,
+    "bias_score": 0.0411,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.239
+  },
+  {
+    "episode": 481,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 482,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 483,
+    "bias_score": 0.0414,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.236
+  },
+  {
+    "episode": 484,
+    "bias_score": 0.041,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.24
+  },
+  {
+    "episode": 485,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 486,
+    "bias_score": 0.0416,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.234
+  },
+  {
+    "episode": 487,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 488,
+    "bias_score": 0.0403,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.247
+  },
+  {
+    "episode": 489,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 490,
+    "bias_score": 0.04,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.25
+  },
+  {
+    "episode": 491,
+    "bias_score": 0.0402,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.248
+  },
+  {
+    "episode": 492,
+    "bias_score": 0.04,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.25
+  },
+  {
+    "episode": 493,
+    "bias_score": 0.0416,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.234
+  },
+  {
+    "episode": 494,
+    "bias_score": 0.041,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.24
+  },
+  {
+    "episode": 495,
+    "bias_score": 0.041,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.24
+  },
+  {
+    "episode": 496,
+    "bias_score": 0.0409,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.241
+  },
+  {
+    "episode": 497,
+    "bias_score": 0.04,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.25
+  },
+  {
+    "episode": 498,
+    "bias_score": 0.0418,
+    "action_taken": 1,
+    "action_name": "Demographic blinding",
+    "reward": 4.232
+  },
+  {
+    "episode": 499,
+    "bias_score": 0.0408,
+    "action_taken": 0,
+    "action_name": "Fairness instruction",
+    "reward": 4.242
+  },
+  {
+    "episode": 500,
+    "bias_score": 0.0418,
+    "action_taken": 5,
+    "action_name": "Contrastive reminder",
+    "reward": 4.232
+  }
+]
