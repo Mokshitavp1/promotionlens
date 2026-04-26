@@ -27,45 +27,53 @@ Respond ONLY as valid JSON with no markdown:
 {{"quality_score": <0.0 to 1.0>}}"""
 
 def extract_adjectives(text: str) -> dict:
-    response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": ADJECTIVE_PROMPT.format(text=text)}],
-        temperature=0
-    )
-    raw = response.choices[0].message.content.strip()
-    
-    # Clean markdown
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    raw = raw.strip()
-    
-    # Try parsing, fall back to empty if it fails
     try:
-        return json.loads(raw)
-    except json.JSONDecodeError:
-        print(f"  Warning: couldn't parse adjectives, using empty. Raw: {raw[:100]}")
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": ADJECTIVE_PROMPT.format(text=text)}],
+            temperature=0
+        )
+        raw = response.choices[0].message.content.strip()
+        
+        # Clean markdown
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        raw = raw.strip()
+        
+        # Try parsing, fall back to empty if it fails
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            print(f"  Warning: couldn't parse adjectives, using empty. Raw: {raw[:100]}")
+            return {"agentic": [], "communal": []}
+    except Exception as e:
+        print(f"  Warning: API error getting adjectives ({type(e).__name__}), using empty")
         return {"agentic": [], "communal": []}
 
 def get_quality_score(text: str) -> float:
-    response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": QUALITY_PROMPT.format(text=text)}],
-        temperature=0
-    )
-    raw = response.choices[0].message.content.strip()
-    
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    raw = raw.strip()
-    
     try:
-        return json.loads(raw)["quality_score"]
-    except (json.JSONDecodeError, KeyError):
-        print(f"  Warning: couldn't parse quality score, defaulting to 0.7. Raw: {raw[:100]}")
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": QUALITY_PROMPT.format(text=text)}],
+            temperature=0
+        )
+        raw = response.choices[0].message.content.strip()
+        
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        raw = raw.strip()
+        
+        try:
+            return json.loads(raw)["quality_score"]
+        except (json.JSONDecodeError, KeyError):
+            print(f"  Warning: couldn't parse quality score, defaulting to 0.7. Raw: {raw[:100]}")
+            return 0.7
+    except Exception as e:
+        print(f"  Warning: API error getting quality score ({type(e).__name__}), defaulting to 0.7")
         return 0.7
 
 def compute_bias_state(responses: dict) -> dict:
