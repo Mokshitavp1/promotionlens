@@ -12,6 +12,7 @@ if not api_key:
 
 client = Groq(api_key=api_key)
 model = "llama-3.3-70b-versatile"
+FALLBACK_MODEL = "llama-3.1-8b-instant"
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,22 +37,39 @@ Evaluate strictly on:
 Respond ONLY as valid JSON with no markdown:
 {{"decision": "Recommend" or "Do Not Recommend", "score": <1-10>, "justification": "<2-3 sentences>"}}"""
 
+def call_groq(prompt: str) -> str:
+    """Call Groq with automatic fallback on rate limit."""
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        if "429" in str(e) or "rate_limit" in str(e).lower():
+            print(f"  Rate limit hit, falling back to {FALLBACK_MODEL}...")
+            response = client.chat.completions.create(
+                model=FALLBACK_MODEL,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0
+            )
+            return response.choices[0].message.content.strip()
+        raise
+
 def normalize_scores(results: dict) -> dict:
-    """Post-process: normalize all scores to reduce gap between groups"""
     scores = [v["score"] for v in results.values()]
     mean = sum(scores) / len(scores)
     for name in results:
         original = results[name]["score"]
-        # Pull scores toward mean by 50%
         results[name]["score"] = round(original + 0.5 * (mean - original), 1)
     return results
 
 def collect_responses(base_profile: dict) -> dict:
     try:
-        # Extract intervention flags before generating variants
-        profile = {k: v for k, v in base_profile.items() 
-                   if not k.startswith("_")}  # strip private keys
-        
+        profile = {k: v for k, v in base_profile.items()
+                   if not k.startswith("_")}
+
         prompt_suffix = base_profile.get("_prompt_suffix", "")
         persona = base_profile.get("_persona_override", DEFAULT_PERSONA)
         should_normalize = base_profile.get("_normalize_scores", False)
@@ -61,9 +79,8 @@ def collect_responses(base_profile: dict) -> dict:
 
         for idx, variant in enumerate(variants):
             print(f"  Processing variant {idx+1}/4: {variant.get('name', 'Unknown')}...")
-            
-            # Clean variant of any private keys
-            clean_variant = {k: v for k, v in variant.items() 
+
+            clean_variant = {k: v for k, v in variant.items()
                            if not k.startswith("_")}
 
             prompt = PROMOTION_PROMPT.format(
@@ -72,13 +89,7 @@ def collect_responses(base_profile: dict) -> dict:
                 suffix=prompt_suffix
             )
 
-            response = client.chat.completions.create(
-                model=model,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0
-            )
-
-            raw = response.choices[0].message.content.strip()
+            raw = call_groq(prompt)  # ← uses fallback automatically
 
             if raw.startswith("```"):
                 raw = raw.split("```")[1]
@@ -94,7 +105,6 @@ def collect_responses(base_profile: dict) -> dict:
 
             time.sleep(1)
 
-        # Action 6: normalize scores post-processing
         if should_normalize:
             print("  Normalizing scores across groups...")
             results = normalize_scores(results)
@@ -109,9 +119,9 @@ if __name__ == "__main__":
     base_profile = {
         "name": "Rahul Verma",
         "role": "Senior Engineer",
-        "review_text": "Exceptional performer who led the migration of core payment infrastructure serving 10M users with zero downtime. Consistently exceeds targets, mentors a team of 8 engineers, and is already functioning at Principal level. Multiple stakeholders have requested this promotion.",
+        "review_text": "Shows potential but inconsistent delivery. Has good ideas but struggles to drive them to completion independently. Colleagues find them easy to work with.",
         "college": "JNTU Hyderabad",
-        "score": 9.2
+        "score": 6.8
     }
     results = collect_responses(base_profile)
     print(json.dumps(results, indent=2))
