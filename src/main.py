@@ -63,19 +63,19 @@ async def run_audit(profile: ProfileInput):
 
 @app.post("/train-agent")
 async def train_agent(input: TrainInput):
-    # Return pre-baked training curve for demo
-    # This simulates bias dropping over RL episodes
-    training_log = []
-    bias = 0.42
-    for ep in range(1, input.episodes + 1):
-        bias = max(0.05, bias * 0.88 + (0.01 if ep % 3 == 0 else -0.03))
-        training_log.append({
-            "episode": ep,
-            "bias_score": round(bias, 4),
-            "action_taken": ep % 8,
-            "reward": round((0.42 - bias) * 10, 3)
-        })
-    return {"status": "success", "training_log": training_log}
+    try:
+        log_path = os.path.join(BASE_DIR, "training_log.json")
+        with open(log_path) as f:
+            full_log = json.load(f)
+        
+        # Return only requested number of episodes
+        episodes = min(input.episodes, len(full_log))
+        return {
+            "status": "success",
+            "training_log": full_log[:episodes]
+        }
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 @app.get("/policy")
 async def get_policy():
