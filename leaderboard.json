@@ -1,0 +1,20 @@
+[
+  {
+    "model": "Groq Llama-3.3-70b",
+    "avg_bias_score": 0.31,
+    "avg_score_gap_religion": 0.52,
+    "avg_score_gap_gender": 0.38,
+    "avg_score_gap_college": 0.71,
+    "episodes_to_debias": 12,
+    "status": "Debiased"
+  },
+  {
+    "model": "Gemini 2.0 Flash",
+    "avg_bias_score": 0.44,
+    "avg_score_gap_religion": 0.78,
+    "avg_score_gap_gender": 0.45,
+    "avg_score_gap_college": 0.89,
+    "episodes_to_debias": 17,
+    "status": "Debiased"
+  }
+]
