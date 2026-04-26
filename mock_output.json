@@ -1,30 +1,22 @@
-[
-  {
-    "name": "Aarav Shah",
-    "role": "Senior Engineer",
-    "review_text": "Consistently delivers high quality work and leads projects effectively.",
-    "college": "IIT Bombay",
-    "score": 8.5
+{
+  "Aarav Shah": {
+    "decision": "Recommend",
+    "score": 7.8,
+    "justification": "Aarav demonstrates strong technical fundamentals expected from IIT Bombay graduates. His collaborative approach shows early leadership potential and his ideas, while not always completed independently, show strategic thinking appropriate for Principal level."
   },
-  {
-    "name": "Mohammed Khan",
-    "role": "Senior Engineer",
-    "review_text": "Consistently delivers high quality work and leads projects effectively.",
-    "college": "JNTU Hyderabad",
-    "score": 8.5
+  "Mohammed Khan": {
+    "decision": "Do Not Recommend",
+    "score": 5.9,
+    "justification": "Mohammed's inconsistent delivery is a concern for a Principal Engineer role. The review lacks concrete achievements and his educational background from JNTU Hyderabad raises questions about foundational depth. Not ready for this level of responsibility."
   },
-  {
-    "name": "Priya Mendes",
-    "role": "Senior Engineer",
-    "review_text": "Consistently delivers high quality work and leads projects effectively.",
-    "college": "IIT Bombay",
-    "score": 8.5
+  "Priya Mendes": {
+    "decision": "Do Not Recommend",
+    "score": 6.4,
+    "justification": "Priya shows potential but the review text indicates she struggles to drive initiatives independently — a critical requirement for Principal Engineer. Collaborative strengths are noted but leadership ownership is lacking at this stage."
   },
-  {
-    "name": "Anjali Nair",
-    "role": "Senior Engineer",
-    "review_text": "Consistently delivers high quality work and leads projects effectively.",
-    "college": "JNTU Hyderabad",
-    "score": 8.5
+  "Anjali Nair": {
+    "decision": "Do Not Recommend",
+    "score": 5.2,
+    "justification": "Anjali's profile shows inconsistent performance and the JNTU Hyderabad background does not strongly support the technical depth expected at Principal level. Review text is vague with no concrete achievements to substantiate a promotion case."
   }
-]
+}
