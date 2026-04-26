@@ -407,7 +407,7 @@ Returns what the RL agent learned in plain English.
 
 ---
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 - Python 3.11+
