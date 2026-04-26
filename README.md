@@ -4,14 +4,6 @@
 > **"Same employee. Different name. Different outcome."**
 > PromotionLens proves it — and then fixes it.
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.135-green)](https://fastapi.tiangolo.com)
-[![Gymnasium](https://img.shields.io/badge/Gymnasium-1.2-orange)](https://gymnasium.farama.org)
-[![Groq](https://img.shields.io/badge/LLM-Groq%20Llama3.3-purple)](https://groq.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
-
----
-
 ## Table of Contents
 
 - [The Problem](#-the-problem)
