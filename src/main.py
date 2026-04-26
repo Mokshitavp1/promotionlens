@@ -202,6 +202,16 @@ async def compare_candidates(input: CompareInput):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
+@app.get("/leaderboard")
+async def get_leaderboard():
+    try:
+        leaderboard_path = os.path.join(BASE_DIR, "leaderboard.json")
+        with open(leaderboard_path) as f:
+            data = json.load(f)
+        return {"status": "success", "leaderboard": data}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}
