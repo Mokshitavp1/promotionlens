@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-# .gitignore
-.env
-.env.local
-.env.*.local
-venv/
 __pycache__/
 *.pyc
-=======
 .env
->>>>>>> a63b8008fcd37b86713dadc79d7f83ad1c6c3882
+venv/

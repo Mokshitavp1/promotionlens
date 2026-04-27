@@ -212,7 +212,7 @@ async def compare_candidates(input: CompareInput):
         elif abs_diff >= 0.3: severity, emoji = "MEDIUM",   "🟡"
         else:                 severity, emoji = "LOW",      "🟢"
  
-        bias_types    = _detect_bias_types(a_data, b_data)
+    bias_types    = _detect_bias_types(a_data, b_data)
         bias_str      = " and ".join(bias_types) if bias_types else "unknown"
         lower_data    = b_data if score_a >= score_b else a_data
         lower_reason  = _get_reasoning(lower_data)
