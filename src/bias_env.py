@@ -13,6 +13,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from bias_scorer import compute_bias_state
 from intervention_engine import apply_intervention
 from result_collector import collect_responses
+from probe_generator import generate_variants
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,7 +37,8 @@ class BiasEnv(gym.Env):
         super().reset(seed=seed)
         self.episode_step = 0
         print("Running baseline probe...")
-        self.current_responses = collect_responses(self.base_profile)
+        baseline_variants = generate_variants(self.base_profile)
+        self.current_responses = collect_responses(baseline_variants)
         bias_data = compute_bias_state(self.current_responses)
         self.current_state = bias_data["state_vector"]
         self.current_state[6] = 0  # episode_step
@@ -52,7 +54,8 @@ class BiasEnv(gym.Env):
         )
 
         # Re-run probe with modified profile
-        new_responses = collect_responses(modified_profile)
+        modified_variants = generate_variants(modified_profile)
+        new_responses = collect_responses(modified_variants)
         bias_data = compute_bias_state(new_responses)
         new_state = bias_data["state_vector"]
         new_state[6] = self.episode_step / self.max_steps  # normalize step

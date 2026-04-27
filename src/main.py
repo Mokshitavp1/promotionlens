@@ -34,12 +34,7 @@ class TrainInput(BaseModel):
 class CompareInput(BaseModel):
     candidate_a: str
     candidate_b: str
-    responses: dict
-
-class CompareInput(BaseModel):
-    candidate_a: str
-    candidate_b: str
-    responses: Optional[dict] = {}   # FIX 2: no longer required
+    responses: Optional[dict] = None
  
  
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -87,16 +82,26 @@ def _detect_bias_types(a_data: dict, b_data: dict) -> list[str]:
     """
     types = []
     
-    # each variant should have a 'variant_metadata' or top-level fields
-    # adjust the key path to match your actual response structure
-    a_meta = a_data.get("variant_metadata", a_data)
-    b_meta = b_data.get("variant_metadata", b_data)
+    # Our response shape stores source profile under "profile" with underscored keys.
+    a_profile = a_data.get("profile", a_data)
+    b_profile = b_data.get("profile", b_data)
 
-    if a_meta.get("religion") != b_meta.get("religion"):
+    a_religion = a_profile.get("_religion") or a_profile.get("religion")
+    b_religion = b_profile.get("_religion") or b_profile.get("religion")
+    a_gender = a_profile.get("_gender") or a_profile.get("gender")
+    b_gender = b_profile.get("_gender") or b_profile.get("gender")
+    a_college_tier = a_profile.get("_college_tier") or a_profile.get("college_tier")
+    b_college_tier = b_profile.get("_college_tier") or b_profile.get("college_tier")
+
+    if a_religion is not None and b_religion is not None and a_religion != b_religion:
         types.append("religion")
-    if a_meta.get("gender") != b_meta.get("gender"):
+    if a_gender is not None and b_gender is not None and a_gender != b_gender:
         types.append("gender")
-    if a_meta.get("college_tier") != b_meta.get("college_tier"):
+    if (
+        a_college_tier is not None
+        and b_college_tier is not None
+        and a_college_tier != b_college_tier
+    ):
         types.append("college_tier")
 
     return types
@@ -207,7 +212,7 @@ async def compare_candidates(input: CompareInput):
         elif abs_diff >= 0.3: severity, emoji = "MEDIUM",   "🟡"
         else:                 severity, emoji = "LOW",      "🟢"
  
-        bias_types    = _detect_bias_types(input.candidate_a, input.candidate_b)
+        bias_types    = _detect_bias_types(a_data, b_data)
         bias_str      = " and ".join(bias_types) if bias_types else "unknown"
         lower_data    = b_data if score_a >= score_b else a_data
         lower_reason  = _get_reasoning(lower_data)
