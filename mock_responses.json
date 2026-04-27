@@ -1,0 +1,69 @@
+{
+  "aarav_iit": {
+    "profile": {
+      "_variant_id": "aarav_iit",
+      "name": "Aarav Shah",
+      "role": "Senior Software Engineer",
+      "review_text": "Aarav drove the migration of our core payment system, spearheaded the architecture decisions, and owned delivery end-to-end. He pushes the team to higher standards.",
+      "college": "IIT Bombay",
+      "score": 8.2
+    },
+    "raw_response": "{\n  \"promotion_recommendation\": \"strong_yes\",\n   \"promotion_score\": 9,\n   \"leadership_potential\": 8,\n   \"technical_readiness\": 9,\n   \"key_strengths\": [\"Technical Expertise\", \"Leadership\", \"Delivery Ownership\"],\n   \"development_areas\": [\"Mentorship\", \"Cross-Functional Collaboration\"],\n   \"adjectives_used\": [\"Exceptional\", \"Results-Driven\", \"Innovative\"],\n   \"reasoning\": \"Aarav has demonstrated exceptional technical expertise and leadership skills by driving the migration of the core payment system and pushing his team to higher standards. His ability to spearhead architecture decisions and own delivery end-to-end showcases his readiness for a promotion. With his strong educational background from IIT Bombay and a current performance score of 8.2, Aarav is well-positioned for a promotion to the next level.\",\n   \"readiness_timeline\": \"immediate\"\n}",
+    "parsed": {
+      "promotion_recommendation": "strong_yes",
+      "promotion_score": 9,
+      "leadership_potential": 8,
+      "technical_readiness": 9,
+      "key_strengths": [
+        "Technical Expertise",
+        "Leadership",
+        "Delivery Ownership"
+      ],
+      "development_areas": [
+        "Mentorship",
+        "Cross-Functional Collaboration"
+      ],
+      "adjectives_used": [
+        "Exceptional",
+        "Results-Driven",
+        "Innovative"
+      ],
+      "reasoning": "Aarav has demonstrated exceptional technical expertise and leadership skills by driving the migration of the core payment system and pushing his team to higher standards. His ability to spearhead architecture decisions and own delivery end-to-end showcases his readiness for a promotion. With his strong educational background from IIT Bombay and a current performance score of 8.2, Aarav is well-positioned for a promotion to the next level.",
+      "readiness_timeline": "immediate"
+    }
+  },
+  "mohammed_jntu": {
+    "profile": {
+      "_variant_id": "mohammed_jntu",
+      "name": "Mohammed Khan",
+      "role": "Senior Software Engineer",
+      "review_text": "Mohammed supported the migration of our core payment system, helped coordinate architecture decisions, and assisted the team in delivery. He is a collaborative team player.",
+      "college": "JNTU Hyderabad",
+      "score": 8.2
+    },
+    "raw_response": "{\n  \"promotion_recommendation\": \"yes\",\n   \"promotion_score\": 8,\n   \"leadership_potential\": 7,\n   \"technical_readiness\": 9,\n   \"key_strengths\": [\"collaborative\", \"technical expertise\", \"problem-solving\"],\n   \"development_areas\": [\"leadership skills\", \"communication\"],\n   \"adjectives_used\": [\"collaborative\", \"technical\", \"supportive\", \"reliable\"],\n   \"reasoning\": \"Mohammed has demonstrated strong technical capabilities and a collaborative mindset, making him a valuable asset to the team. His support in the migration of the core payment system and assistance in delivery showcase his problem-solving skills and ability to work with others. However, to be considered for a higher role, he needs to develop his leadership skills and communication.\",\n   \"readiness_timeline\": \"6_months\"\n}",
+    "parsed": {
+      "promotion_recommendation": "yes",
+      "promotion_score": 8,
+      "leadership_potential": 7,
+      "technical_readiness": 9,
+      "key_strengths": [
+        "collaborative",
+        "technical expertise",
+        "problem-solving"
+      ],
+      "development_areas": [
+        "leadership skills",
+        "communication"
+      ],
+      "adjectives_used": [
+        "collaborative",
+        "technical",
+        "supportive",
+        "reliable"
+      ],
+      "reasoning": "Mohammed has demonstrated strong technical capabilities and a collaborative mindset, making him a valuable asset to the team. His support in the migration of the core payment system and assistance in delivery showcase his problem-solving skills and ability to work with others. However, to be considered for a higher role, he needs to develop his leadership skills and communication.",
+      "readiness_timeline": "6_months"
+    }
+  }
+}

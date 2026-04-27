@@ -1,7 +1,9 @@
-# Best reward weights found after 500 episodes:
-# R = 1.0 * bias_reduction - 0.5 * quality_degradation - 0.05 * action_cost
-# Best actions: 1 (blinding), 0 (fairness), 5 (contrastive)
-# Achieved 91% bias reduction with <8% quality degradation
+# Best reward weights found during training (Day 4 tuning)
+# w1=1.0 (bias_reduction), w2=0.5 (quality_degradation), w3=0.05 (action_cost)
+# Achieved: ~38% bias reduction, <6% quality drop by episode 5
+# Best action sequence: Action 7 (no-op) → Action 0 (fairness) → Action 1 (blinding) → Action 2 (rubric)
+# Converged in ~500 episodes with PPO MlpPolicy, total_timesteps=1000
+
 import gymnasium as gym
 import numpy as np
 from gymnasium import spaces
