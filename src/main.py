@@ -5,6 +5,7 @@ from pydantic import BaseModel
 import json
 import os
 import sys
+import datetime
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from bias_scorer import compute_bias_state
@@ -52,6 +53,11 @@ async def run_audit(profile: ProfileInput):
                 responses = json.load(f)
 
         bias_data = compute_bias_state(responses)
+        
+        audit_entry = {"timestamp": datetime.datetime.utcnow().isoformat(), "profile": profile.dict(), "bias_report": bias_data}
+        audit_log_path = os.path.join(BASE_DIR, "audit_trail.jsonl")
+        with open(audit_log_path, "a") as f:
+            f.write(json.dumps(audit_entry) + "\n")
 
         return {
             "status": "success",
