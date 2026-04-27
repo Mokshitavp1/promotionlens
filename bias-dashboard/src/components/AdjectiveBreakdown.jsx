@@ -1,4 +1,5 @@
 export default function AdjectiveBreakdown({ adjectives }) {
+  console.log("adjectives prop:", adjectives)
   if (!adjectives || typeof adjectives !== 'object' || Object.keys(adjectives).length === 0) {
     return <div className="bg-white p-6 rounded-lg shadow">No adjective data</div>
   }
