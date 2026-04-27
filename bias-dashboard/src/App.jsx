@@ -1,82 +1,91 @@
 import { useState, useEffect } from "react"
-import { runAudit, compareCandidates } from "./api/auditApi"
+import { runAudit, compareCandidates, getLeaderboard, getPolicy, trainAgent } from "./api/auditApi"
 import BiasHero from "./components/BiasHero"
 import BiasScoreGauge from "./components/BiasScoreGauge"
 import ProbeResultCard from "./components/ProbeResultCard"
+import AdjectiveBreakdown from "./components/AdjectiveBreakdown"
 import PolicyReport from "./components/PolicyReport"
 import LLMLeaderboard from "./components/LLMLeaderboard"
+import TrainingCurve from "./components/TrainingCurve"
 
-function App() {
-  const [data, setData] = useState(null)
-  const [comparison, setComparison] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
+const BASE_PROFILE = {
+  name: "Rahul Verma",
+  role: "Senior Engineer",
+  review_text: "Consistently delivers high quality work and leads projects effectively.",
+  college: "IIT Bombay",
+  score: 8.5
+}
+
+export default function App() {
+  const [auditData, setAuditData]     = useState(null)
+  const [comparison, setComparison]   = useState(null)
+  const [leaderboard, setLeaderboard] = useState([])
+  const [policy, setPolicy]           = useState("")
+  const [trainingLog, setTrainingLog] = useState(null)
+  const [biasScore, setBiasScore]     = useState(0)
+  const [loading, setLoading]         = useState(true)
+  const [error, setError]             = useState(null)
 
   useEffect(() => {
-    const baseProfile = {
-      name: "Rahul Verma",
-      role: "Senior Engineer",
-      review_text: "Consistently delivers high quality work and leads projects effectively.",
-      college: "IIT Bombay",
-      score: 8.5
-    }
+    // Fire all requests in parallel — don't let one block another
+    getLeaderboard().then(r => r?.leaderboard && setLeaderboard(r.leaderboard)).catch(() => {})
+    getPolicy().then(r => r?.policy && setPolicy(r.policy)).catch(() => {})
+    trainAgent(20).then(r => r?.training_log && setTrainingLog(r.training_log)).catch(() => {})
 
-    runAudit(baseProfile)
-      .then(response => {
-        console.log("✅ API Response:", response)
-        
-        setData({
-          overallBiasScore: 0.35,
-          probeResults: response.responses || {},
-          policyReport: "Agent learning: Demographic blinding + fairness instructions reduce bias by 35%",
-          leaderboard: [
-            { model: "Gemini", avgBias: 0.52, episodes: 9, status: "Debiased" },
-            { model: "GPT-4o", avgBias: 0.48, episodes: 12, status: "Training" }
-          ]
-        })
-        setLoading(false)
-        
-        // Call /compare with real API responses
-        compareCandidates("Aarav Shah", "Mohammed Khan", response.responses || {})
-          .then(compareResult => {
-            console.log("✅ Compare result:", compareResult)
-            if (compareResult?.comparison) {
-              setComparison(compareResult.comparison)
-            }
-          })
-          .catch(err => console.error("❌ Compare failed:", err))
+    runAudit(BASE_PROFILE)
+      .then(res => {
+        setAuditData(res)
+
+        // Compute overall bias score from score_gaps
+        const gaps = res.bias_report?.score_gaps
+        if (gaps) {
+          const avg = Object.values(gaps).reduce((a, b) => a + b, 0) / Object.keys(gaps).length
+          setBiasScore(Math.min(avg / 10, 1))
+        }
+
+        // Compare two specific variants
+        compareCandidates("aarav_iit", "mohammed_jntu", res.responses || {})
+          .then(r => r?.comparison && setComparison(r.comparison))
+          .catch(() => {})
       })
-      .catch(err => {
-        console.error("❌ API error:", err)
-        setError(err.message)
-        setLoading(false)
-      })
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <div className="p-4 text-center text-lg">Loading audit...</div>
-  if (error) return <div className="p-4 text-red-600">Error: {error}</div>
-  if (!data) return <div className="p-4">No data</div>
+  if (loading) return <div className="p-8 text-center text-lg">Running bias audit...</div>
+  if (error)   return <div className="p-8 text-red-600">Error: {error}</div>
+
+  const responses  = auditData?.responses || {}
+  const adjectives = auditData?.bias_report?.adjectives || {}
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold text-blue-700 mb-8">Bias Dashboard</h1>
-      
-      {comparison && <BiasHero comparison={comparison} />}
-      
-      <div className="grid grid-cols-1 gap-6 mb-8">
-        <BiasScoreGauge score={data.overallBiasScore} />
-        <ProbeResultCard results={data.probeResults} />
+      <h1 className="text-4xl font-bold text-blue-700 mb-8">PromotionLens — Bias Dashboard</h1>
+
+      {comparison && <div className="mb-6"><BiasHero comparison={comparison} /></div>}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <BiasScoreGauge score={biasScore} />
+        <PolicyReport report={policy} />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 mb-8">
-        <PolicyReport report={data.policyReport} />
+      <div className="mb-6">
+        <ProbeResultCard results={responses} />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 mb-8">
-        <LLMLeaderboard leaderboard={data.leaderboard} />
+      <div className="mb-6">
+        <AdjectiveBreakdown adjectives={adjectives} />
+      </div>
+
+      {trainingLog && (
+        <div className="mb-6">
+          <TrainingCurve trainingLog={trainingLog} />
+        </div>
+      )}
+
+      <div className="mb-6">
+        <LLMLeaderboard leaderboard={leaderboard} />
       </div>
     </div>
   )
 }
-
-export default App

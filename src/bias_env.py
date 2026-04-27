@@ -4,6 +4,7 @@
 # Best action sequence: Action 7 (no-op) → Action 0 (fairness) → Action 1 (blinding) → Action 2 (rubric)
 # Converged in ~500 episodes with PPO MlpPolicy, total_timesteps=1000
 
+from probe_generator import generate_variants
 import gymnasium as gym
 import numpy as np
 from gymnasium import spaces
@@ -36,7 +37,8 @@ class BiasEnv(gym.Env):
         super().reset(seed=seed)
         self.episode_step = 0
         print("Running baseline probe...")
-        self.current_responses = collect_responses(self.base_profile)
+        variants = generate_variants(self.base_profile)
+        self.current_responses = collect_responses(variants)
         bias_data = compute_bias_state(self.current_responses)
         self.current_state = bias_data["state_vector"]
         self.current_state[6] = 0  # episode_step
@@ -52,7 +54,8 @@ class BiasEnv(gym.Env):
         )
 
         # Re-run probe with modified profile
-        new_responses = collect_responses(modified_profile)
+        modified_variants = generate_variants(modified_profile)
+        new_responses = collect_responses(modified_variants)
         bias_data = compute_bias_state(new_responses)
         new_state = bias_data["state_vector"]
         new_state[6] = self.episode_step / self.max_steps  # normalize step

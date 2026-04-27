@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "http://localhost:8000";
 
 export async function runAudit(profile) {
   try {
@@ -34,4 +34,28 @@ export async function compareCandidates(candidate_a, candidate_b, responses) {
     console.error("Compare API call failed:", error);
     return null;
   }
+}
+
+export async function trainAgent(episodes = 5) {
+  const r = await fetch(`${API_BASE_URL}/train-agent`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ episodes })
+  });
+  return r.json();
+}
+
+export async function getPolicy() {
+  const r = await fetch(`${API_BASE_URL}/policy`);
+  return r.json();
+}
+
+export async function compareModels() {
+  const r = await fetch(`${API_BASE_URL}/compare-models`, { method: "POST" });
+  return r.json();
+}
+
+export async function getLeaderboard() {
+  const r = await fetch(`${API_BASE_URL}/leaderboard`);
+  return r.json();
 }
