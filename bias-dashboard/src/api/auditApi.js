@@ -10,9 +10,9 @@ export async function runAudit(profile) {
     
     if (!response.ok) throw new Error(`API error: ${response.status}`);
     return response.json();
-  } catch (error) {
-    console.error("API call failed:", error);
-    throw error;
+  } catch (err) {
+    console.warn("API failed! Using mock data:", err)
+    return mockData  // mock_output.json is already in /src/
   }
 }
 

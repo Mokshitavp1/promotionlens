@@ -19,23 +19,37 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+
 # ── Backend (mirrors probe_generator.py) ─────────────────────────────────────
 BACKEND = os.getenv("LLM_BACKEND", "groq")
 
 if BACKEND == "groq":
     from groq import Groq
     _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    _MODEL  = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+
+    GROQ_FALLBACK_MODELS = [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+        "gemma2-9b-it",
+        "mixtral-8x7b-32768",
+    ]
 
     def _complete(system: str, user: str, temperature: float = 0.0) -> str:
-        resp = _client.chat.completions.create(
-            model=_MODEL,
-            temperature=temperature,
-            response_format={"type": "json_object"},
-            messages=[{"role": "system", "content": system},
-                      {"role": "user",   "content": user}],
-        )
-        return resp.choices[0].message.content
+        for model in GROQ_FALLBACK_MODELS:
+            try:
+                resp = _client.chat.completions.create(
+                    model=model,
+                    temperature=temperature,
+                    response_format={"type": "json_object"},
+                    messages=[{"role": "system", "content": system},
+                            {"role": "user",   "content": user}],
+                )
+                return resp.choices[0].message.content
+            except Exception as e:
+                print(f"[fallback] {model} failed: {e}")
+                continue
+        raise RuntimeError("All Groq models exhausted")
 
 elif BACKEND == "openrouter":
     import requests as _req
