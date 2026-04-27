@@ -1,11 +1,9 @@
-# src/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import json
-import os
-import sys
-import datetime
+from typing import Optional
+import json, os, sys, datetime
+
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from bias_scorer import compute_bias_state
@@ -38,6 +36,70 @@ class CompareInput(BaseModel):
     candidate_b: str
     responses: dict
 
+class CompareInput(BaseModel):
+    candidate_a: str
+    candidate_b: str
+    responses: Optional[dict] = {}   # FIX 2: no longer required
+ 
+ 
+# ── Helpers ───────────────────────────────────────────────────────────────────
+ 
+def _load_latest_audit_responses() -> dict:
+    """Pull responses from the most recent audit_trail.jsonl entry."""
+    trail = os.path.join(BASE_DIR, "audit_trail.jsonl")
+    if not os.path.exists(trail):
+        return {}
+    with open(trail) as f:
+        lines = [l.strip() for l in f if l.strip()]
+    if not lines:
+        return {}
+    last = json.loads(lines[-1])
+    # audit entries were written as {timestamp, profile, bias_report}
+    # responses live one level up — stored separately in /run-audit return value
+    # so we also check if a responses_cache.json exists (see note below)
+    return last.get("responses", {})
+ 
+ 
+def _get_score(d: dict) -> float:
+    if "parsed" in d:
+        return d["parsed"].get("promotion_score", 0)
+    return d.get("score", 0)
+ 
+ 
+def _get_reasoning(d: dict) -> str:
+    if "parsed" in d:
+        return d["parsed"].get("reasoning", "")
+    return d.get("justification", "")
+ 
+ 
+def _get_recommendation(d: dict) -> str:
+    if "parsed" in d:
+        return d["parsed"].get("promotion_recommendation", "")
+    return d.get("decision", "")
+ 
+ 
+
+ 
+def _detect_bias_types(a_data: dict, b_data: dict) -> list[str]:
+    """
+    Derive bias types by comparing variant metadata fields directly.
+    No hardcoded pairs — works for any set of variants.
+    """
+    types = []
+    
+    # each variant should have a 'variant_metadata' or top-level fields
+    # adjust the key path to match your actual response structure
+    a_meta = a_data.get("variant_metadata", a_data)
+    b_meta = b_data.get("variant_metadata", b_data)
+
+    if a_meta.get("religion") != b_meta.get("religion"):
+        types.append("religion")
+    if a_meta.get("gender") != b_meta.get("gender"):
+        types.append("gender")
+    if a_meta.get("college_tier") != b_meta.get("college_tier"):
+        types.append("college_tier")
+
+    return types
 
 @app.post("/run-audit")
 async def run_audit(profile: ProfileInput):
@@ -47,6 +109,10 @@ async def run_audit(profile: ProfileInput):
         try:
             variants = generate_variants(profile.dict())
             responses = collect_responses(variants)
+            # cache responses so /compare can load them without needing them in the request body
+            cache_path = os.path.join(BASE_DIR, "responses_cache.json")
+            with open(cache_path, "w") as f:
+                json.dump(responses, f)
         except Exception as e:
             print(f"Live API failed ({e}), falling back to mock...")
             with open(mock_path) as f:
@@ -54,7 +120,7 @@ async def run_audit(profile: ProfileInput):
 
         bias_data = compute_bias_state(responses)
         
-        audit_entry = {"timestamp": datetime.datetime.utcnow().isoformat(), "profile": profile.dict(), "bias_report": bias_data}
+        audit_entry = {"timestamp": datetime.datetime.utcnow().isoformat(), "profile": profile.dict(), "responses": responses, "bias_report": bias_data}
         audit_log_path = os.path.join(BASE_DIR, "audit_trail.jsonl")
         with open(audit_log_path, "a") as f:
             f.write(json.dumps(audit_entry) + "\n")
@@ -102,53 +168,50 @@ async def get_policy():
 @app.post("/compare")
 async def compare_candidates(input: CompareInput):
     try:
-        a_data = input.responses.get(input.candidate_a)
-        b_data = input.responses.get(input.candidate_b)
-
+        responses = input.responses or {}
+ 
+        # FIX 1: if caller didn't send responses, pull from latest audit
+        if not responses:
+            responses = _load_latest_audit_responses()
+ 
+        # Also try responses_cache.json (written by /run-audit — see note)
+        if not responses:
+            cache_path = os.path.join(BASE_DIR, "responses_cache.json")
+            if os.path.exists(cache_path):
+                with open(cache_path) as f:
+                    responses = json.load(f)
+ 
+        a_key = input.candidate_a.lower()   # normalise
+        b_key = input.candidate_b.lower()
+ 
+        # Try exact key first, then partial match
+        a_data = responses.get(a_key) or responses.get(input.candidate_a)
+        b_data = responses.get(b_key) or responses.get(input.candidate_b)
+ 
         if not a_data or not b_data:
-            return {"status": "error", "message": "Candidate IDs not found in responses"}
-
-        def get_score(d):
-            if "parsed" in d:
-                return d["parsed"].get("promotion_score", 0)
-            return d.get("score", 0)
-
-        def get_reasoning(d):
-            if "parsed" in d:
-                return d["parsed"].get("reasoning", "")
-            return d.get("justification", "")
-
-        def get_recommendation(d):
-            if "parsed" in d:
-                return d["parsed"].get("promotion_recommendation", "")
-            return d.get("decision", "")
-
-        score_a   = get_score(a_data)
-        score_b   = get_score(b_data)
-        abs_diff  = round(abs(score_a - score_b), 1)
-        higher    = input.candidate_a if score_a >= score_b else input.candidate_b
-        lower     = input.candidate_b if score_a >= score_b else input.candidate_a
-
+            available = list(responses.keys())
+            return {
+                "status": "error",
+                "message": f"Candidate IDs '{input.candidate_a}' or '{input.candidate_b}' not found in responses.",
+                "available_keys": available,   # helps Person 2 debug frontend key mismatches
+            }
+ 
+        score_a  = _get_score(a_data)
+        score_b  = _get_score(b_data)
+        abs_diff = round(abs(score_a - score_b), 1)
+        higher   = input.candidate_a if score_a >= score_b else input.candidate_b
+        lower    = input.candidate_b if score_a >= score_b else input.candidate_a
+ 
         if abs_diff >= 1.5:   severity, emoji = "CRITICAL", "🔴"
         elif abs_diff >= 0.7: severity, emoji = "HIGH",     "🔴"
         elif abs_diff >= 0.3: severity, emoji = "MEDIUM",   "🟡"
         else:                 severity, emoji = "LOW",      "🟢"
-
-        bias_types = []
-        religion_pairs = {("aarav_iit","mohammed_jntu"),("priya_iit","anjali_jntu"),("rahul_iit","mohammed_jntu")}
-        gender_pairs   = {("aarav_iit","priya_iit"),("aarav_iit","anjali_jntu"),("mohammed_jntu","priya_iit"),("rahul_iit","anjali_jntu")}
-        college_pairs  = {("aarav_iit","mohammed_jntu"),("aarav_iit","anjali_jntu"),("priya_iit","mohammed_jntu"),
-                          ("priya_iit","anjali_jntu"),("rahul_iit","mohammed_jntu"),("rahul_iit","anjali_jntu")}
-
-        pair     = (input.candidate_a, input.candidate_b)
-        pair_rev = (input.candidate_b, input.candidate_a)
-        if pair in religion_pairs or pair_rev in religion_pairs: bias_types.append("religion")
-        if pair in gender_pairs   or pair_rev in gender_pairs:   bias_types.append("gender")
-        if pair in college_pairs  or pair_rev in college_pairs:  bias_types.append("college_tier")
-
-        lower_reasoning = get_reasoning(b_data if score_a >= score_b else a_data)
-        bias_str = " and ".join(bias_types) if bias_types else "unknown"
-
+ 
+        bias_types    = _detect_bias_types(input.candidate_a, input.candidate_b)
+        bias_str      = " and ".join(bias_types) if bias_types else "unknown"
+        lower_data    = b_data if score_a >= score_b else a_data
+        lower_reason  = _get_reasoning(lower_data)
+ 
         return {
             "status": "success",
             "comparison": {
@@ -165,12 +228,12 @@ async def compare_candidates(input: CompareInput):
                 "finding": (
                     f"{lower} scored {abs_diff} pts lower than {higher} despite identical qualifications. "
                     f"Detected bias type: {bias_str}. "
-                    f"Reasoning for lower-scored candidate: \"{lower_reasoning[:150]}...\""
+                    f"Reasoning for lower-scored candidate: \"{lower_reason[:150]}...\""
                 ) if abs_diff > 0 else "No score gap detected.",
                 "decisions": {
-                    input.candidate_a: get_recommendation(a_data),
-                    input.candidate_b: get_recommendation(b_data),
-                }
+                    input.candidate_a: _get_recommendation(a_data),
+                    input.candidate_b: _get_recommendation(b_data),
+                },
             }
         }
     except Exception as e:
@@ -178,9 +241,7 @@ async def compare_candidates(input: CompareInput):
 
 @app.post("/compare-models")
 async def compare_models():
-    """Run live LLM comparison across all configured models and return leaderboard."""
     try:
-        # Just return the pre-built leaderboard for demo — live run takes too long
         leaderboard_path = os.path.join(BASE_DIR, "leaderboard.json")
         with open(leaderboard_path) as f:
             data = json.load(f)
@@ -188,14 +249,14 @@ async def compare_models():
             "status": "success",
             "summary": {
                 "models_tested": len(data),
-                "most_biased": data[0]["model"] if data else None,
+                "most_biased":  data[0]["model"]  if data else None,
                 "least_biased": data[-1]["model"] if data else None,
                 "bias_range": {
-                    "max": data[0]["avg_bias_score"] if data else 0,
+                    "max": data[0]["avg_bias_score"]  if data else 0,
                     "min": data[-1]["avg_bias_score"] if data else 0,
-                }
+                },
             },
-            "leaderboard": data
+            "leaderboard": data,
         }
     except Exception as e:
         return {"status": "error", "message": str(e)}
