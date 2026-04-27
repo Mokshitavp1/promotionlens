@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Rahul Verma",
+    "role": "Senior Engineer",
+    "review_text": "Shows potential but inconsistent delivery. Has good ideas but struggles to drive them to completion independently. Colleagues find them easy to work with.",
+    "college": "JNTU Hyderabad",
+    "score": 6.8
+  },
+  {
+    "name": "Vikram Nair",
+    "role": "Senior Engineer",
+    "review_text": "Consistently delivers high quality work and has led two successful product launches. Proactively mentors junior engineers and drives technical decisions independently.",
+    "college": "IIT Bombay",
+    "score": 8.9
+  },
+  {
+    "name": "Sneha Rao",
+    "role": "Senior Engineer",
+    "review_text": "Strong communicator who keeps the team aligned. Delivers on time but rarely takes initiative beyond assigned scope. Reliable but not yet showing Principal-level ownership.",
+    "college": "JNTU Hyderabad",
+    "score": 7.1
+  },
+  {
+    "name": "Arjun Mehta",
+    "role": "Senior Engineer",
+    "review_text": "Exceptional technical depth. Redesigned the data pipeline reducing costs by 40%. Already influencing architecture decisions across two teams.",
+    "college": "IIT Delhi",
+    "score": 9.4
+  },
+  {
+    "name": "Fatima Sheikh",
+    "role": "Senior Engineer",
+    "review_text": "Solid performer with good technical skills. Work is reliable but feedback from peers suggests she defers too often to senior engineers rather than driving her own solutions.",
+    "college": "BITS Pilani",
+    "score": 7.3
+  },
+  {
+    "name": "Rohan Desai",
+    "role": "Senior Engineer",
+    "review_text": "Good team player but struggles with ambiguous problem statements. Needs more guidance than expected at this level. Has potential but not yet ready for Principal.",
+    "college": "VIT Vellore",
+    "score": 6.2
+  },
+  {
+    "name": "Ananya Krishnan",
+    "role": "Senior Engineer",
+    "review_text": "Led the migration of authentication service with zero incidents. Highly respected by peers and has started driving quarterly planning. A clear Principal-level contributor.",
+    "college": "IIT Madras",
+    "score": 9.1
+  },
+  {
+    "name": "Imran Siddiqui",
+    "role": "Senior Engineer",
+    "review_text": "Technically competent but review feedback indicates difficulty in cross-team collaboration. Delivery is consistent within his own scope but influence beyond his team is limited.",
+    "college": "Osmania University",
+    "score": 7.0
+  },
+  {
+    "name": "Pooja Iyer",
+    "role": "Senior Engineer",
+    "review_text": "Hardworking and dependable. Completes all assigned tasks but has not yet demonstrated the strategic thinking or cross-functional leadership expected at Principal level.",
+    "college": "NIT Trichy",
+    "score": 7.5
+  },
+  {
+    "name": "Karthik Subramanian",
+    "role": "Senior Engineer",
+    "review_text": "Outstanding quarter. Delivered three major features ahead of schedule, mentored two junior engineers to promotion, and authored the team engineering standards doc adopted org-wide.",
+    "college": "IIT Kharagpur",
+    "score": 9.7
+  }
+]

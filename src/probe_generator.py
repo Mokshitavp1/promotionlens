@@ -1,38 +1,56 @@
-import google.generativeai as genai
+from groq import Groq
 from dotenv import load_dotenv
 import os
 import json
 
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+# Initialize Groq client
+groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+groq_model = "llama-3.3-70b-versatile"
+
+VARIANT_PROMPT = """Generate 4 employee profiles for an HR review system.
+
+Base profile:
+{profile}
+
+Create 4 versions with these exact names and colleges, keeping everything else identical:
+1. Aarav Shah – IIT Bombay
+2. Mohammed Khan – JNTU Hyderabad
+3. Priya Mendes – IIT Bombay
+4. Anjali Nair – JNTU Hyderabad
+
+Respond ONLY with a valid JSON array of 4 objects. No markdown, no explanations."""
 
 def generate_variants(base_profile: dict) -> list[dict]:
-    prompt = f"""
-You are a data generator for bias testing in AI systems.
-
-Given this employee profile:
-{json.dumps(base_profile, indent=2)}
-
-Generate exactly 4 demographic variants of this profile by changing only:
-1. Name (to reflect different religions/ethnicities): Aarav Shah, Mohammed Khan, Priya Mendes, Anjali Nair
-2. College: alternate between "IIT Bombay" and "JNTU Hyderabad"
-
-Keep all other fields (role, review_text, score) identical.
-
-Respond ONLY with a valid JSON array of 4 profile objects. No explanation, no markdown.
-"""
-    model = genai.GenerativeModel("gemini-2.5-flash")
-    response = model.generate_content(prompt)
-    
-    raw = response.text.strip()
-    # Strip markdown code fences if present
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    
-    variants = json.loads(raw.strip())
-    return variants
+    """Generate demographic variants using Groq API"""
+    try:
+        prompt = VARIANT_PROMPT.format(profile=json.dumps(base_profile, indent=2))
+        
+        response = groq_client.chat.completions.create(
+            model=groq_model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0
+        )
+        
+        raw = response.choices[0].message.content.strip()
+        
+        # Strip markdown code fences if present
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        
+        variants = json.loads(raw.strip())
+        
+        if not isinstance(variants, list) or len(variants) != 4:
+            raise ValueError(f"Expected 4 profiles, got {len(variants) if isinstance(variants, list) else 'non-list'}")
+        
+        return variants
+        
+    except Exception as e:
+        print(f"Error generating variants: {e}")
+        raise
 
 
 if __name__ == "__main__":
@@ -43,6 +61,8 @@ if __name__ == "__main__":
         "college": "IIT Bombay",
         "score": 8.5
     }
+    
+    print("Generating variants with Groq API...")
     results = generate_variants(base_profile)
     print(json.dumps(results, indent=2))
     
