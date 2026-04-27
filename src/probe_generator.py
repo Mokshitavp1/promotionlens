@@ -139,7 +139,12 @@ Original review:
 
 Rewrite the review for this employee profile.
 """
-    return _complete(_REWRITE_SYSTEM, user, temperature=0.3).strip()
+    try:
+        return _complete(_REWRITE_SYSTEM, user, temperature=0.3).strip()
+    except Exception as e:
+        # Keep pipeline running under API throttling by falling back to base text.
+        print(f"  [WARN] Review rewrite failed for {variant['id']}: {e}")
+        return base_review
 
 
 # ── Main public function ───────────────────────────────────────────────────────

@@ -14,6 +14,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from bias_scorer import compute_bias_state
 from intervention_engine import apply_intervention
 from result_collector import collect_responses
+from probe_generator import generate_variants
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -54,6 +55,8 @@ class BiasEnv(gym.Env):
         )
 
         # Re-run probe with modified profile
+        modified_variants = generate_variants(modified_profile)
+        new_responses = collect_responses(modified_variants)
         modified_variants = generate_variants(modified_profile)
         new_responses = collect_responses(modified_variants)
         bias_data = compute_bias_state(new_responses)
