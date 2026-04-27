@@ -3,8 +3,8 @@ export default function ProbeResultCard({ results }) {
     return <div className="bg-white p-6 rounded-lg shadow">No results available</div>
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <h2 className="text-xl font-bold mb-4">Promotion Decisions</h2>
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h2 className="text-xl font-bold mb-4 text-gray-800">Promotion Decisions</h2>
       <div className="space-y-4">
         {Object.entries(results).map(([vid, data]) => {
           const p = data?.parsed || {}
@@ -25,8 +25,9 @@ export default function ProbeResultCard({ results }) {
               </div>
               <p className="text-sm text-gray-600 mt-3">{reason}</p>
             </div>
-          )
-        })}
+            <p className="text-sm text-gray-600 mt-3">{result.justification}</p>
+          </div>
+        ))}
       </div>
     </div>
   )

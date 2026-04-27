@@ -4,13 +4,21 @@ export default function BiasHero({ comparison }) {
   }
 
   const { 
-    lower_scored, 
-    higher_scored, 
+    candidate_a, 
+    candidate_b, 
     score_gap, 
     bias_types_detected, 
     severity_emoji,
     finding
   } = comparison
+
+  // Check if we got an error response
+  if (comparison.status === "error" || !candidate_a || !candidate_b) {
+    return <div className="bg-white p-6 rounded-lg shadow text-red-600">Error: {comparison.message || "Unable to load comparison"}</div>
+  }
+
+  const scoreGapNum = parseFloat(score_gap) || 0
+  const hasBias = bias_types_detected && bias_types_detected.length > 0
 
   return (
     <div className={`border-2 rounded-lg p-8 mb-8 ${
@@ -28,40 +36,43 @@ export default function BiasHero({ comparison }) {
       </div>
 
       <p className="text-lg font-semibold text-gray-800 mb-6">
-        {lower_scored} scored <span className="text-red-600 font-bold">{score_gap} points lower</span> than {higher_scored}
+        <span className="font-bold">{candidate_a}</span> scored <span className="text-red-600 font-bold">{scoreGapNum.toFixed(1)} points lower</span> than <span className="font-bold">{candidate_b}</span>
         <br />
         for the <span className="italic">IDENTICAL employee profile.</span>
       </p>
 
       <div className="space-y-3 mb-8 bg-white p-4 rounded border border-gray-200">
-        {bias_types_detected && bias_types_detected.includes("religion") && (
-          <div className="flex justify-between items-center">
-            <span className="font-semibold text-gray-700">Religion bias:</span>
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-red-600">{score_gap.toFixed(2)} pts</span>
-              <span className="text-2xl">🔴</span>
-            </div>
-          </div>
-        )}
-        {bias_types_detected && bias_types_detected.includes("college tier") && (
-          <div className="flex justify-between items-center">
-            <span className="font-semibold text-gray-700">College bias:</span>
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-red-600">{score_gap.toFixed(2)} pts</span>
-              <span className="text-2xl">🔴</span>
-            </div>
-          </div>
-        )}
-        {bias_types_detected && bias_types_detected.includes("gender") && (
-          <div className="flex justify-between items-center">
-            <span className="font-semibold text-gray-700">Gender bias:</span>
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-red-600">{score_gap.toFixed(2)} pts</span>
-              <span className="text-2xl">🔴</span>
-            </div>
-          </div>
-        )}
-        {(!bias_types_detected || bias_types_detected.length === 0) && (
+        {hasBias ? (
+          <>
+            {bias_types_detected.includes("religion") && (
+              <div className="flex justify-between items-center">
+                <span className="font-semibold text-gray-700">Religion bias:</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold text-red-600">{scoreGapNum.toFixed(2)} pts</span>
+                  <span className="text-2xl">🔴</span>
+                </div>
+              </div>
+            )}
+            {bias_types_detected.includes("college tier") && (
+              <div className="flex justify-between items-center">
+                <span className="font-semibold text-gray-700">College bias:</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold text-red-600">{scoreGapNum.toFixed(2)} pts</span>
+                  <span className="text-2xl">🔴</span>
+                </div>
+              </div>
+            )}
+            {bias_types_detected.includes("gender") && (
+              <div className="flex justify-between items-center">
+                <span className="font-semibold text-gray-700">Gender bias:</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold text-red-600">{scoreGapNum.toFixed(2)} pts</span>
+                  <span className="text-2xl">🔴</span>
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
           <div className="flex justify-between items-center">
             <span className="font-semibold text-gray-700">Gender bias:</span>
             <div className="flex items-center gap-2">

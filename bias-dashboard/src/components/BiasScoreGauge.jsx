@@ -1,9 +1,12 @@
 export default function BiasScoreGauge({ score }) {
+  // Ensure score is a number and round it
+  const numericScore = typeof score === 'number' ? Math.round(score * 100) : 0
+  
   const radius = 45
   const circumference = 2 * Math.PI * radius
-  const strokeDashoffset = circumference - (score / 100) * circumference
+  const strokeDashoffset = circumference - (numericScore / 100) * circumference
 
-  const color = score < 30 ? "#10b981" : score < 60 ? "#f59e0b" : "#ef4444"
+  const color = numericScore < 30 ? "#10b981" : numericScore < 60 ? "#f59e0b" : "#ef4444"
 
   return (
     <div className="bg-white p-6 rounded-lg shadow text-center">
@@ -24,10 +27,10 @@ export default function BiasScoreGauge({ score }) {
         />
       </svg>
       <p className="text-4xl font-bold mt-4" style={{ color }}>
-        {score}
+        {numericScore}
       </p>
       <p className="text-gray-600 text-sm mt-2">
-        {score < 30 ? "Low Bias ✓" : score < 60 ? "Moderate Bias ⚠" : "High Bias ✗"}
+        {numericScore < 30 ? "Low Bias ✓" : numericScore < 60 ? "Moderate Bias ⚠" : "High Bias ✗"}
       </p>
     </div>
   )
