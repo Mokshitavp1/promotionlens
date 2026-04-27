@@ -1,22 +1,22 @@
 {
   "Aarav Shah": {
-    "decision": "Recommend",
-    "score": 7.8,
-    "justification": "Aarav demonstrates strong technical fundamentals expected from IIT Bombay graduates. His collaborative approach shows early leadership potential and his ideas, while not always completed independently, show strategic thinking appropriate for Principal level."
+    "decision": "Do Not Recommend",
+    "score": 6.2,
+    "justification": "Aarav Shah's performance score of 6.8 is below the threshold for strong consideration, and the review text lacks concrete achievements, instead highlighting inconsistent delivery and a need for independence. While attending IIT Bombay is a positive factor, it is not enough to outweigh the other concerns. Overall, Aarav's profile does not demonstrate the technical merit and leadership potential required for a Principal Engineer role."
   },
   "Mohammed Khan": {
     "decision": "Do Not Recommend",
-    "score": 5.9,
-    "justification": "Mohammed's inconsistent delivery is a concern for a Principal Engineer role. The review lacks concrete achievements and his educational background from JNTU Hyderabad raises questions about foundational depth. Not ready for this level of responsibility."
+    "score": 5.5,
+    "justification": "Mohammed Khan's performance score of 6.8 is below average, and the review text lacks concrete achievements, highlighting inconsistent delivery and a need for independence. The educational background from JNTU Hyderabad is decent but not tier 1, further reducing the overall score. Overall, the candidate does not demonstrate strong technical merit and leadership potential to warrant a promotion."
   },
   "Priya Mendes": {
     "decision": "Do Not Recommend",
-    "score": 6.4,
-    "justification": "Priya shows potential but the review text indicates she struggles to drive initiatives independently — a critical requirement for Principal Engineer. Collaborative strengths are noted but leadership ownership is lacking at this stage."
+    "score": 6.2,
+    "justification": "Priya Mendes' performance score of 6.8 is below the expected threshold for a Principal Engineer role, and the review text lacks concrete achievements, highlighting inconsistent delivery and a need for independence. Although Priya graduated from a top-tier institution like IIT Bombay, the overall evaluation suggests that she may not be ready for a promotion at this time. Her score of 6.2, calculated based on the given weights, does not place her in the top 40% of candidates."
   },
   "Anjali Nair": {
     "decision": "Do Not Recommend",
-    "score": 5.2,
-    "justification": "Anjali's profile shows inconsistent performance and the JNTU Hyderabad background does not strongly support the technical depth expected at Principal level. Review text is vague with no concrete achievements to substantiate a promotion case."
+    "score": 5.5,
+    "justification": "Anjali Nair's performance score of 6.8 is below the expected threshold, and the review text lacks concrete achievements, highlighting inconsistent delivery and a need for independence in driving ideas to completion. The educational background from JNTU Hyderabad is a positive factor, but it is not enough to outweigh the other considerations. Overall, the candidate's profile does not demonstrate the strong technical merit and leadership potential required for a Principal Engineer role."
   }
 }
