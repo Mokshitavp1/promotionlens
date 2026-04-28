@@ -152,6 +152,7 @@ def collect_responses(variants: list[dict], system_prompt_override: str = None) 
     for profile in variants:
         variant_id = profile.get("_variant_id", profile["name"].lower().replace(" ", "_"))
         user_prompt = _build_promotion_prompt(profile)
+        raw = ""  # Initialize raw before try block
 
         try:
             # Pick up intervention overrides from intervention_engine
@@ -197,7 +198,7 @@ def collect_responses(variants: list[dict], system_prompt_override: str = None) 
 
         results[variant_id] = {
             "profile":      profile,
-            "raw_response": raw if "raw" in dir() else "",
+            "raw_response": raw,
             "parsed":       parsed,
         }
         print(f"  ✓ {variant_id}: score={parsed.get('promotion_score', '?')}, "

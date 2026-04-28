@@ -1,41 +1,35 @@
 export default function LLMLeaderboard({ leaderboard }) {
-  if (!leaderboard || leaderboard.length === 0)
-    return <div className="bg-white p-6 rounded-lg shadow">No leaderboard data</div>
+  if (!leaderboard || leaderboard.length === 0) return null
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <h2 className="text-xl font-bold mb-4">🏆 LLM Leaderboard</h2>
-      <div className="overflow-x-auto">
-        <table className="w-full text-left">
-          <thead className="bg-blue-100 border-b-2 border-blue-500">
-            <tr>
-              <th className="px-4 py-3 font-bold text-gray-800">Rank</th>
-              <th className="px-4 py-3 font-bold text-gray-800">Model</th>
-              <th className="px-4 py-3 font-bold text-gray-800">Avg Bias Score</th>
-              <th className="px-4 py-3 font-bold text-gray-800">Episodes to Debias</th>
-              <th className="px-4 py-3 font-bold text-gray-800">Religion Gap</th>
-              <th className="px-4 py-3 font-bold text-gray-800">College Gap</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboard.map((entry, idx) => {
-              const bias = entry.avg_bias_score ?? 0
-              const scoreColor = bias < 0.2 ? "text-green-600" : bias < 0.5 ? "text-yellow-600" : "text-red-600"
-              return (
-                <tr key={idx} className={idx % 2 === 0 ? "bg-gray-50" : "bg-white"}>
-                  <td className="px-4 py-3 font-bold">#{idx + 1}</td>
-                  <td className="px-4 py-3 font-semibold text-gray-800">{entry.model}</td>
-                  <td className={`px-4 py-3 font-bold ${scoreColor}`}>{bias.toFixed(3)}</td>
-                  <td className="px-4 py-3 text-gray-700">{entry.episodes_to_debias ?? "—"}</td>
-                  <td className="px-4 py-3 text-gray-700">{entry.score_gap_religion?.toFixed(2) ?? "—"}</td>
-                  <td className="px-4 py-3 text-gray-700">{entry.score_gap_college?.toFixed(2) ?? "—"}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </div>
-      <p className="mt-4 text-sm text-gray-500">Lower bias score = better. Sorted most → least biased.</p>
+    <div style={{ background:"var(--surface)", border:"1px solid var(--border)", borderRadius:12, padding:28 }}>
+      <p style={{ color:"var(--muted)", fontSize:11, fontFamily:"'DM Mono', monospace", letterSpacing:2, textTransform:"uppercase", marginBottom:20 }}>LLM Leaderboard</p>
+      <table style={{ width:"100%", borderCollapse:"collapse" }}>
+        <thead>
+          <tr style={{ borderBottom:"1px solid var(--border)" }}>
+            {["Rank","Model","Avg Bias","Episodes","Religion Gap","College Gap"].map(h => (
+              <th key={h} style={{ padding:"10px 16px", fontSize:11, fontFamily:"'DM Mono', monospace", color:"var(--muted)", letterSpacing:1, textTransform:"uppercase", fontWeight:500, textAlign:"left" }}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {leaderboard.map((entry, idx) => {
+            const bias = entry.avg_bias_score ?? 0
+            const color = bias < 0.3 ? "var(--accent2)" : bias < 0.8 ? "var(--warn)" : "var(--danger)"
+            return (
+              <tr key={idx} style={{ borderBottom:"1px solid var(--border)", background: idx % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)" }}>
+                <td style={{ padding:"12px 16px", fontSize:13, color:"var(--muted)", fontFamily:"'DM Mono', monospace" }}>#{idx+1}</td>
+                <td style={{ padding:"12px 16px", fontSize:13, color:"var(--text)", fontWeight:600 }}>{entry.model}</td>
+                <td style={{ padding:"12px 16px", fontSize:13, color, fontFamily:"'DM Mono', monospace", fontWeight:700 }}>{bias.toFixed(3)}</td>
+                <td style={{ padding:"12px 16px", fontSize:13, color:"var(--muted)", fontFamily:"'DM Mono', monospace" }}>{entry.episodes_to_debias ?? "—"}</td>
+                <td style={{ padding:"12px 16px", fontSize:13, color:"var(--muted)", fontFamily:"'DM Mono', monospace" }}>{entry.score_gap_religion?.toFixed(2) ?? "—"}</td>
+                <td style={{ padding:"12px 16px", fontSize:13, color:"var(--muted)", fontFamily:"'DM Mono', monospace" }}>{entry.score_gap_college?.toFixed(2) ?? "—"}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+      <p style={{ marginTop:16, fontSize:12, color:"var(--muted)", fontFamily:"'DM Mono', monospace" }}>Lower bias score = better. Sorted most → least biased.</p>
     </div>
   )
 }
