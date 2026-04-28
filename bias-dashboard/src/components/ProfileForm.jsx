@@ -66,7 +66,7 @@ export default function ProfileForm({ form, onChange, loading }) {
               placeholder={placeholder}
               value={form[key]}
               onChange={e => set(key, type === "number"
-                ? (e.target.value === "" ? "" : Math.min(10, Math.max(0, parseFloat(e.target.value))))
+                ? (e.target.value === "" ? 0 : Math.min(10, Math.max(0, parseFloat(e.target.value))))
                 : e.target.value
               )}
               style={FIELD_STYLE}

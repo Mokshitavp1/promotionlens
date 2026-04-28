@@ -26,20 +26,24 @@ export async function trainAgent(episodes = 5) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ episodes }),
   })
+  if (!r.ok) throw new Error(`API error: ${r.status}`)
   return r.json()
 }
 
 export async function getPolicy() {
   const r = await fetch(`${API_BASE_URL}/policy`)
+  if (!r.ok) throw new Error(`API error: ${r.status}`)
   return r.json()
 }
 
 export async function compareModels() {
   const r = await fetch(`${API_BASE_URL}/compare-models`, { method: "POST" })
+  if (!r.ok) throw new Error(`API error: ${r.status}`)
   return r.json()
 }
 
 export async function getLeaderboard() {
   const r = await fetch(`${API_BASE_URL}/leaderboard`)
+  if (!r.ok) throw new Error(`API error: ${r.status}`)
   return r.json()
 }

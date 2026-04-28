@@ -57,8 +57,6 @@ class BiasEnv(gym.Env):
         # Re-run probe with modified profile
         modified_variants = generate_variants(modified_profile)
         new_responses = collect_responses(modified_variants)
-        modified_variants = generate_variants(modified_profile)
-        new_responses = collect_responses(modified_variants)
         bias_data = compute_bias_state(new_responses)
         new_state = bias_data["state_vector"]
         new_state[6] = self.episode_step / self.max_steps  # normalize step

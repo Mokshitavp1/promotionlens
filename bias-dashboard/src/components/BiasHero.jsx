@@ -1,4 +1,4 @@
-export default function BiasHero({ comparison }) {
+export default function BiasHero({ comparison, biasReport }) {
   if (!comparison || !comparison.candidate_a) return null
 
   const { candidate_a_name, candidate_b_name, candidate_a, candidate_b, score_gap, bias_types_detected, finding, severity } = comparison
@@ -6,8 +6,12 @@ export default function BiasHero({ comparison }) {
   const nameA = candidate_a_name || candidate_a
   const nameB = candidate_b_name || candidate_b
 
-  // No gap — render clean green state, don't say "bias detected"
-  if (gap === 0 || severity === "LOW") {
+  // Check for language bias (agentic/communal adjectives)
+  const langDeltas = biasReport?.lang_deltas || {}
+  const hasLanguageBias = (langDeltas.agentic > 0.3) || (langDeltas.communal > 0.3)
+
+  // No gap AND no language bias — render clean green state, don't say "bias detected"
+  if ((gap === 0 || severity === "LOW") && !hasLanguageBias) {
     return (
       <div style={{ background: "rgba(0,230,118,0.05)", border: "1px solid rgba(0,230,118,0.3)", borderRadius: 12, padding: 32 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
@@ -23,10 +27,11 @@ export default function BiasHero({ comparison }) {
     )
   }
 
-  const isCritical = severity === "CRITICAL" || severity === "HIGH"
+  const isCritical = severity === "CRITICAL" || severity === "HIGH" || hasLanguageBias
   const color = isCritical ? "var(--danger)" : "var(--warn)"
-  const bg    = isCritical ? "rgba(255,77,109,0.06)" : "rgba(255,183,3,0.06)"
-  const glow  = isCritical ? "rgba(255,77,109,0.08)" : "rgba(255,183,3,0.08)"
+  const bg = isCritical ? "rgba(255,77,109,0.06)" : "rgba(255,183,3,0.06)"
+  const glow = isCritical ? "rgba(255,77,109,0.08)" : "rgba(255,183,3,0.08)"
+  const displaySeverity = hasLanguageBias && gap === 0 ? "MEDIUM (Language Bias)" : severity
 
   return (
     <div style={{ background: bg, border: `1px solid ${color}`, borderRadius: 12, padding: 32, position: "relative", overflow: "hidden" }}>
@@ -34,17 +39,25 @@ export default function BiasHero({ comparison }) {
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
         <div style={{ width: 10, height: 10, borderRadius: "50%", background: color, boxShadow: `0 0 12px ${color}` }} />
         <span style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 20, color, letterSpacing: 2, textTransform: "uppercase" }}>
-          Bias Detected — {severity}
+          Bias Detected — {displaySeverity}
         </span>
       </div>
-      <p style={{ color: "var(--text)", fontSize: 16, marginBottom: 24, lineHeight: 1.6 }}>
-        <code style={{ background: "var(--surface2)", padding: "2px 8px", borderRadius: 4, fontFamily: "'DM Mono', monospace", fontSize: 14 }}>{nameA}</code>
-        {" "}scored{" "}
-        <span style={{ color, fontWeight: 700 }}>{gap.toFixed(1)} pts lower</span>
-        {" "}than{" "}
-        <code style={{ background: "var(--surface2)", padding: "2px 8px", borderRadius: 4, fontFamily: "'DM Mono', monospace", fontSize: 14 }}>{nameB}</code>
-        {" "}on the <em>identical</em> profile.
-      </p>
+      {gap > 0 ? (
+        <p style={{ color: "var(--text)", fontSize: 16, marginBottom: 24, lineHeight: 1.6 }}>
+          <code style={{ background: "var(--surface2)", padding: "2px 8px", borderRadius: 4, fontFamily: "'DM Mono', monospace", fontSize: 14 }}>{nameA}</code>
+          {" "}scored{" "}
+          <span style={{ color, fontWeight: 700 }}>{gap.toFixed(1)} pts lower</span>
+          {" "}than{" "}
+          <code style={{ background: "var(--surface2)", padding: "2px 8px", borderRadius: 4, fontFamily: "'DM Mono', monospace", fontSize: 14 }}>{nameB}</code>
+          {" "}on the <em>identical</em> profile.
+        </p>
+      ) : (
+        <p style={{ color: "var(--text)", fontSize: 16, marginBottom: 24, lineHeight: 1.6 }}>
+          While numeric scores are equal, the LLM used different language patterns across demographic variants.
+          {langDeltas.agentic > 0.3 && <><br /> • <strong>Agentic language</strong> bias: {(langDeltas.agentic * 100).toFixed(0)}% variance in achievement-focused adjectives</>}
+          {langDeltas.communal > 0.3 && <><br /> • <strong>Communal language</strong> bias: {(langDeltas.communal * 100).toFixed(0)}% variance in interpersonal adjectives</>}
+        </p>
+      )}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 20 }}>
         {(bias_types_detected || []).map(t => (
           <span key={t} style={{ background: "rgba(255,77,109,0.15)", border: "1px solid rgba(255,77,109,0.3)", borderRadius: 20, padding: "4px 14px", fontSize: 12, fontFamily: "'DM Mono', monospace", color: "var(--danger)", textTransform: "uppercase", letterSpacing: 1 }}>{t}</span>

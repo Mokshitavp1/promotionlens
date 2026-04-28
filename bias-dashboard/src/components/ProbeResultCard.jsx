@@ -16,12 +16,12 @@ export default function ProbeResultCard({ results, baselineName }) {
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {Object.entries(results).map(([vid, data]) => {
-          const p     = data?.parsed || {}
-          const rec   = p.promotion_recommendation || data?.decision || "—"
+          const p = data?.parsed || {}
+          const rec = p.promotion_recommendation || data?.decision || "—"
           const score = p.promotion_score ?? data?.score ?? 0
           const reason = p.reasoning || data?.justification || ""
-          const name  = data?.profile?.name || vid
-          const isYes = rec.includes("yes") || rec === "Recommend"
+          const name = data?.profile?.name || vid
+          const isYes = (typeof rec === "string") && (rec.toLowerCase().includes("yes"))
 
           return (
             <div key={vid} style={{

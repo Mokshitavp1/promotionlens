@@ -289,7 +289,7 @@ export default function App() {
                   </p>
                 </div>
 
-                {comparison && <BiasHero comparison={comparison} />}
+                {comparison && <BiasHero comparison={comparison} biasReport={auditData?.bias_report} />}
 
                 <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 24 }}>
                   <BiasScoreGauge score={biasScore} />
