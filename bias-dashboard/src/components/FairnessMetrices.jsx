@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function FairnessMetrics({ data }) {
+export default function FairnessMetrics() {
   const metrics = [
     {
       name: "Demographic Parity",
@@ -57,7 +57,7 @@ export default function FairnessMetrics({ data }) {
         {metrics.map((metric, idx) => {
           const progress = (metric.value / metric.target) * 100
           const isGood = metric.status === "good"
-          
+
           return (
             <div key={idx} className="bg-white rounded-lg shadow p-6 border-t-4 border-gray-200 hover:shadow-lg transition">
               <div className="flex justify-between items-start mb-4">
@@ -77,9 +77,8 @@ export default function FairnessMetrics({ data }) {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
-                    className={`h-2 rounded-full transition-all ${
-                      isGood ? "bg-green-500" : "bg-yellow-500"
-                    }`}
+                    className={`h-2 rounded-full transition-all ${isGood ? "bg-green-500" : "bg-yellow-500"
+                      }`}
                     style={{ width: `${Math.min(100, progress)}%` }}
                   />
                 </div>

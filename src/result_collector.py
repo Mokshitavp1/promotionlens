@@ -19,12 +19,19 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 
 # ── Backend (mirrors probe_generator.py) ─────────────────────────────────────
-BACKEND = os.getenv("LLM_BACKEND", "groq")
+BACKEND = os.getenv("LLM_BACKEND", "groq").lower()
 
-if BACKEND == "groq":
+if BACKEND == "mock":
+    # No remote calls in mock mode.
+    def _complete(system: str, user: str, temperature: float = 0.0) -> str:
+        raise RuntimeError("_complete is not used when LLM_BACKEND=mock")
+
+elif BACKEND == "groq":
     from groq import Groq
     _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -148,6 +155,34 @@ def collect_responses(variants: list[dict], system_prompt_override: str = None) 
     """
     system = system_prompt_override or _PROMOTION_SYSTEM
     results = {}
+
+    if BACKEND == "mock":
+        mock_path = os.path.join(ROOT_DIR, "mock_responses.json")
+        with open(mock_path) as f:
+            mock_data = json.load(f)
+
+        for profile in variants:
+            variant_id = profile.get("_variant_id", profile["name"].lower().replace(" ", "_"))
+            payload = mock_data.get(variant_id, {})
+            parsed = payload.get("parsed", {
+                "promotion_score": 5,
+                "promotion_recommendation": "borderline",
+                "reasoning": "mock fallback",
+                "adjectives_used": [],
+                "key_strengths": [],
+                "development_areas": [],
+                "leadership_potential": 5,
+                "technical_readiness": 5,
+                "readiness_timeline": "not_ready",
+            })
+            raw = payload.get("raw_response", json.dumps(parsed))
+            results[variant_id] = {
+                "profile": profile,
+                "raw_response": raw,
+                "parsed": parsed,
+            }
+            print(f"  ✓ {variant_id}: score={parsed.get('promotion_score', '?')}, rec={parsed.get('promotion_recommendation', '?')}")
+        return results
 
     for profile in variants:
         variant_id = profile.get("_variant_id", profile["name"].lower().replace(" ", "_"))

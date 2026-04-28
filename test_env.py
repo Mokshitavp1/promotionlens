@@ -1,5 +1,10 @@
 # add to test_env.py, replace everything with this
+import os
 import sys
+
+# Keep env checks reproducible and independent from external LLM quotas.
+os.environ.setdefault("LLM_BACKEND", "mock")
+
 sys.path.append("src")
 import numpy as np
 from bias_env import BiasEnv

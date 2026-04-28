@@ -108,6 +108,7 @@ def _detect_bias_types(a_data: dict, b_data: dict) -> list[str]:
 async def run_audit(profile: ProfileInput):
     try:
         mock_path = os.path.join(BASE_DIR, "mock_output.json")
+        bias_data = None
 
         try:
             variants = generate_variants(profile.dict())
@@ -119,9 +120,12 @@ async def run_audit(profile: ProfileInput):
         except Exception as e:
             print(f"Live API failed ({e}), falling back to mock...")
             with open(mock_path) as f:
-                responses = json.load(f)
+                mock_payload = json.load(f)
+            responses = mock_payload.get("responses", mock_payload)
+            bias_data = mock_payload.get("bias_report")
 
-        bias_data = compute_bias_state(responses)
+        if not bias_data:
+            bias_data = compute_bias_state(responses)
         
         audit_entry = {"timestamp": datetime.datetime.utcnow().isoformat(), "profile": profile.dict(), "responses": responses, "bias_report": bias_data}
         audit_log_path = os.path.join(BASE_DIR, "audit_trail.jsonl")

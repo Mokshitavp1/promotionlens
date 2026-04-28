@@ -1,4 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE || "http://localhost:8000";
+import mockData from "../mock_output.json";
 
 export async function runAudit(profile) {
   try {
@@ -7,7 +8,7 @@ export async function runAudit(profile) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(profile)
     });
-    
+
     if (!response.ok) throw new Error(`API error: ${response.status}`);
     return response.json();
   } catch (err) {
@@ -27,7 +28,7 @@ export async function compareCandidates(candidate_a, candidate_b, responses) {
         responses
       })
     });
-    
+
     if (!response.ok) throw new Error(`API error: ${response.status}`);
     return response.json();
   } catch (error) {

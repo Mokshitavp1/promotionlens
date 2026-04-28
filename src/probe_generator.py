@@ -14,9 +14,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Supported backends ────────────────────────────────────────────────────────
-BACKEND = os.getenv("LLM_BACKEND", "groq")  # "groq" | "openrouter" | "gemini"
+BACKEND = os.getenv("LLM_BACKEND", "groq").lower()  # "mock" | "groq" | "openrouter" | "gemini"
 
-if BACKEND == "groq":
+if BACKEND == "mock":
+    def _complete(system: str, user: str, temperature: float = 0.0) -> str:
+        raise RuntimeError("_complete is not used when LLM_BACKEND=mock")
+
+elif BACKEND == "groq":
     from groq import Groq
     _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
     _MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
@@ -128,6 +132,9 @@ Rules:
 
 def _rewrite_review(base_review: str, variant: dict) -> str:
     """Rewrite the base review text to match the variant's framing flavor."""
+    if BACKEND == "mock":
+        return base_review
+
     user = f"""
 Employee name: {variant['name']}
 College: {variant['college']}
