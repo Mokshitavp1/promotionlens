@@ -12,8 +12,8 @@ export async function runAudit(profile) {
     if (!response.ok) throw new Error(`API error: ${response.status}`);
     return response.json();
   } catch (err) {
-    console.warn("API failed! Using mock data:", err)
-    return mockData  // mock_output.json is already in /src/
+    console.warn("API failed! Using mock data:", err);
+    return mockData;
   }
 }
 
@@ -38,25 +38,29 @@ export async function compareCandidates(candidate_a, candidate_b, responses) {
 }
 
 export async function trainAgent(episodes = 5) {
-  const r = await fetch(`${API_BASE_URL}/train-agent`, {
+  const response = await fetch(`${API_BASE_URL}/train-agent`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ episodes })
   });
-  return r.json();
+  if (!response.ok) throw new Error(`API error: ${response.status}`);
+  return response.json();
 }
 
 export async function getPolicy() {
-  const r = await fetch(`${API_BASE_URL}/policy`);
-  return r.json();
+  const response = await fetch(`${API_BASE_URL}/policy`);
+  if (!response.ok) throw new Error(`API error: ${response.status}`);
+  return response.json();
 }
 
 export async function compareModels() {
-  const r = await fetch(`${API_BASE_URL}/compare-models`, { method: "POST" });
-  return r.json();
+  const response = await fetch(`${API_BASE_URL}/compare-models`, { method: "POST" });
+  if (!response.ok) throw new Error(`API error: ${response.status}`);
+  return response.json();
 }
 
 export async function getLeaderboard() {
-  const r = await fetch(`${API_BASE_URL}/leaderboard`);
-  return r.json();
+  const response = await fetch(`${API_BASE_URL}/leaderboard`);
+  if (!response.ok) throw new Error(`API error: ${response.status}`);
+  return response.json();
 }

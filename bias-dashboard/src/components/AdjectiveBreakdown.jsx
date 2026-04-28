@@ -1,56 +1,54 @@
 export default function AdjectiveBreakdown({ adjectives }) {
-  if (!adjectives || typeof adjectives !== 'object' || Object.keys(adjectives).length === 0) {
-    return <div className="bg-white p-6 rounded-lg shadow">No adjective data</div>
-  }
+  const normalizedAdjectives = (() => {
+    if (!adjectives || typeof adjectives !== 'object') return null
 
-  const names = Object.keys(adjectives)
+    if (Array.isArray(adjectives)) {
+      return adjectives.reduce((acc, item, idx) => {
+        if (item && typeof item === 'object') {
+          const label = item.name || item.title || `Adjectives ${idx + 1}`
+          acc[label] = item
+        }
+        return acc
+      }, {})
+    }
+
+    // If it's an object with variant IDs as keys, return as-is
+    // Each value should have { agentic: [...], communal: [...] }
+    return adjectives
+  })()
+
+  if (!normalizedAdjectives || Object.keys(normalizedAdjectives).length === 0)
+    return null
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <h2 className="text-xl font-bold mb-4">Adjective Breakdown</h2>
-      <div className="space-y-6">
-        {names.map(name => {
-          const data = adjectives[name] || {}
-          const agentic = Array.isArray(data.agentic) ? data.agentic : []
-          const communal = Array.isArray(data.communal) ? data.communal : []
-          
-          return (
-            <div key={name} className="border-b pb-4">
-              <p className="font-semibold text-gray-800 mb-3">{name}</p>
-              
-              <div className="mb-3">
-                <p className="text-sm font-semibold text-blue-600 mb-2">Agentic Words:</p>
-                <div className="flex flex-wrap gap-2">
-                  {agentic.length > 0 ? (
-                    agentic.map((word, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                        {word}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="text-gray-500 text-sm">None</span>
-                  )}
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-semibold text-pink-600 mb-2">Communal Words:</p>
-                <div className="flex flex-wrap gap-2">
-                  {communal.length > 0 ? (
-                    communal.map((word, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm">
-                        {word}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="text-gray-500 text-sm">None</span>
-                  )}
-                </div>
+    <div style={{ background:"var(--surface)", border:"1px solid var(--border)", borderRadius:12, padding:28 }}>
+      <p style={{ color:"var(--muted)", fontSize:11, fontFamily:"'DM Mono', monospace", letterSpacing:2, textTransform:"uppercase", marginBottom:20 }}>Adjective Breakdown</p>
+      {Object.keys(normalizedAdjectives).map(name => {
+        const data = normalizedAdjectives[name] || {}
+        const agentic = Array.isArray(data.agentic) ? data.agentic : []
+        const communal = Array.isArray(data.communal) ? data.communal : []
+        return (
+          <div key={name} style={{ borderBottom:"1px solid var(--border)", paddingBottom:20, marginBottom:20 }}>
+            <p style={{ fontFamily:"'DM Mono', monospace", fontSize:12, color:"var(--muted)", letterSpacing:1, textTransform:"uppercase", marginBottom:12 }}>{name}</p>
+            <div style={{ marginBottom:12 }}>
+              <p style={{ fontSize:11, fontFamily:"'DM Mono', monospace", color:"var(--accent)", letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>Agentic</p>
+              <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
+                {agentic.length > 0 ? agentic.map((w, i) => (
+                  <span key={i} style={{ background:"rgba(108,99,255,0.15)", border:"1px solid rgba(108,99,255,0.3)", borderRadius:20, padding:"3px 12px", fontSize:12, color:"var(--accent)", fontFamily:"'DM Mono', monospace" }}>{w}</span>
+                )) : <span style={{ fontSize:12, color:"var(--muted)", fontFamily:"'DM Mono', monospace" }}>none</span>}
               </div>
             </div>
-          )
-        })}
-      </div>
+            <div>
+              <p style={{ fontSize:11, fontFamily:"'DM Mono', monospace", color:"#ff6b9d", letterSpacing:1, textTransform:"uppercase", marginBottom:8 }}>Communal</p>
+              <div style={{ display:"flex", flexWrap:"wrap", gap:8 }}>
+                {communal.length > 0 ? communal.map((w, i) => (
+                  <span key={i} style={{ background:"rgba(255,107,157,0.15)", border:"1px solid rgba(255,107,157,0.3)", borderRadius:20, padding:"3px 12px", fontSize:12, color:"#ff6b9d", fontFamily:"'DM Mono', monospace" }}>{w}</span>
+                )) : <span style={{ fontSize:12, color:"var(--muted)", fontFamily:"'DM Mono', monospace" }}>none</span>}
+              </div>
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

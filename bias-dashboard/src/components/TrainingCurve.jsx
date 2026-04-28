@@ -1,105 +1,62 @@
 export default function TrainingCurve({ trainingLog }) {
-  if (!trainingLog || !Array.isArray(trainingLog) || trainingLog.length === 0) {
-    return (
-      <div className="bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 shadow-lg">
-        <h3 className="text-xl font-semibold mb-2">Training Progress</h3>
-        <p className="text-slate-400 text-sm">No training data available.</p>
-      </div>
-    );
-  }
+  if (!trainingLog || !Array.isArray(trainingLog) || trainingLog.length === 0)
+    return null
 
   const safeNumber = (value, fallback = 0) => {
-    const num = Number(value);
-    return Number.isFinite(num) ? num : fallback;
-  };
+    const num = Number(value)
+    return Number.isFinite(num) ? num : fallback
+  }
 
-  const initialBias = safeNumber(
-    trainingLog[0]?.overall_bias_score ??
-      trainingLog[0]?.bias_score ??
-      trainingLog[0]?.score
-  );
+  const getBias = (step) => safeNumber(step?.overall_bias_score ?? step?.bias_score ?? step?.score)
 
-  const finalBias = safeNumber(
-    trainingLog[trainingLog.length - 1]?.overall_bias_score ??
-      trainingLog[trainingLog.length - 1]?.bias_score ??
-      trainingLog[trainingLog.length - 1]?.score
-  );
-
-  const reduction =
-    initialBias > 0
-      ? (((initialBias - finalBias) / initialBias) * 100).toFixed(1)
-      : "0.0";
-
-  const maxBias = Math.max(
-    ...trainingLog.map((step) =>
-      safeNumber(step?.overall_bias_score ?? step?.bias_score ?? step?.score)
-    ),
-    1
-  );
+  const initialBias = getBias(trainingLog[0])
+  const finalBias = getBias(trainingLog[trainingLog.length - 1])
+  const reduction = initialBias > 0 ? (((initialBias - finalBias) / initialBias) * 100).toFixed(1) : "0.0"
+  const maxBias = Math.max(...trainingLog.map(getBias), 1)
 
   return (
-    <div className="bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 shadow-lg">
-      <div className="mb-6">
-        <h3 className="text-2xl font-bold mb-2">Training Progress</h3>
-        <p className="text-slate-400 text-sm">
-          Bias score reduced from {initialBias.toFixed(2)} to {finalBias.toFixed(2)} ({reduction}% improvement)
-        </p>
+    <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12, padding: 28 }}>
+      <p style={{ color: "var(--muted)", fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Training Progress</p>
+      <p style={{ color: "var(--muted)", fontSize: 13, marginBottom: 24 }}>
+        Bias score reduced from <span style={{ color: "var(--danger)" }}>{initialBias.toFixed(3)}</span> to <span style={{ color: "var(--accent2)" }}>{finalBias.toFixed(3)}</span> ({reduction}% improvement)
+      </p>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 28 }}>
+        {[
+          { label: "Starting Score", value: initialBias.toFixed(3), color: "var(--danger)" },
+          { label: "Reduction", value: `${reduction}%`, color: "var(--accent)" },
+          { label: "Final Score", value: finalBias.toFixed(3), color: "var(--accent2)" },
+        ].map(({ label, value, color }) => (
+          <div key={label} style={{ background: "var(--surface2)", borderRadius: 10, padding: 16, border: "1px solid var(--border)" }}>
+            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 24, fontWeight: 800, color }}>{value}</div>
+            <div style={{ fontSize: 12, color: "var(--muted)", fontFamily: "'DM Mono', monospace", marginTop: 4 }}>{label}</div>
+          </div>
+        ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-2xl font-bold text-red-400">
-            {initialBias.toFixed(2)}
-          </div>
-          <div className="text-sm text-slate-400 mt-1">Starting Score</div>
-        </div>
-
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-2xl font-bold text-cyan-400">{reduction}%</div>
-          <div className="text-sm text-slate-400 mt-1">Reduction</div>
-        </div>
-
-        <div className="bg-slate-800 rounded-xl p-4 border border-slate-700">
-          <div className="text-2xl font-bold text-green-400">
-            {finalBias.toFixed(2)}
-          </div>
-          <div className="text-sm text-slate-400 mt-1">Final Score</div>
-        </div>
-      </div>
-
-      <div className="space-y-4">
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {trainingLog.map((step, index) => {
-          const score = safeNumber(
-            step?.overall_bias_score ?? step?.bias_score ?? step?.score
-          );
-
-          const barWidth = `${(score / maxBias) * 100}%`;
-
+          const score = getBias(step)
           return (
-            <div key={index} className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-slate-200">
+            <div key={index} style={{ background: "rgba(255,255,255,0.02)", borderRadius: 10, padding: 16, border: "1px solid var(--border)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "var(--muted)" }}>
                   Iteration {step?.iteration ?? index + 1}
                 </span>
-                <span className="text-sm text-slate-300">
-                  {score.toFixed(2)}
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: "var(--text)" }}>
+                  {score.toFixed(3)}
                 </span>
               </div>
-
-              <div className="w-full h-3 bg-slate-700 rounded-full overflow-hidden mb-2">
-                <div
-                  className="h-full bg-gradient-to-r from-red-500 via-yellow-400 to-green-500 rounded-full transition-all duration-500"
-                  style={{ width: barWidth }}
-                />
+              <div style={{ width: "100%", height: 6, background: "var(--border)", borderRadius: 4, overflow: "hidden" }}>
+                <div style={{ height: 6, borderRadius: 4, background: "linear-gradient(90deg, var(--danger), var(--warn), var(--accent2))", width: `${(score / maxBias) * 100}%`, transition: "width 0.5s ease" }} />
               </div>
-
-              <div className="text-xs text-slate-400">
+              <div style={{ fontSize: 11, color: "var(--muted)", fontFamily: "'DM Mono', monospace", marginTop: 6 }}>
                 {step?.note || step?.summary || "Bias optimization step completed"}
               </div>
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
+  )
 }
