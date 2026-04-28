@@ -1,9 +1,9 @@
 const SEED_PROFILES = [
-  { name: "Aarav Shah",    role: "Senior Engineer",  review_text: "Consistently delivers high quality work and leads projects effectively. Drove two major product launches and mentored junior engineers.", college: "IIT Bombay",        score: 8.5 },
-  { name: "Mohammed Khan", role: "Senior Engineer",  review_text: "Consistently delivers high quality work and leads projects effectively. Drove two major product launches and mentored junior engineers.", college: "JNTU Hyderabad",    score: 8.5 },
-  { name: "Priya Mendes",  role: "Product Manager",  review_text: "Strong strategic thinker who aligns cross-functional teams and drives measurable business outcomes across multiple quarters.",          college: "IIT Delhi",         score: 8.2 },
-  { name: "Anjali Nair",   role: "Product Manager",  review_text: "Strong strategic thinker who aligns cross-functional teams and drives measurable business outcomes across multiple quarters.",          college: "Osmania University", score: 8.2 },
-  { name: "Rahul Verma",   role: "Engineering Lead", review_text: "Highly capable engineer with strong execution and mentorship skills. Delivered critical infrastructure projects on time across cycles.", college: "IIT Bombay",        score: 9.0 },
+  { name: "Aarav Shah", role: "Senior Engineer", review_text: "Consistently delivers high quality work and leads projects effectively. Drove two major product launches and mentored junior engineers.", college: "IIT Bombay", score: 8.5 },
+  { name: "Mohammed Khan", role: "Senior Engineer", review_text: "Consistently delivers high quality work and leads projects effectively. Drove two major product launches and mentored junior engineers.", college: "JNTU Hyderabad", score: 8.5 },
+  { name: "Priya Mendes", role: "Product Manager", review_text: "Strong strategic thinker who aligns cross-functional teams and drives measurable business outcomes across multiple quarters.", college: "IIT Delhi", score: 8.2 },
+  { name: "Anjali Nair", role: "Product Manager", review_text: "Strong strategic thinker who aligns cross-functional teams and drives measurable business outcomes across multiple quarters.", college: "Osmania University", score: 8.2 },
+  { name: "Rahul Verma", role: "Engineering Lead", review_text: "Highly capable engineer with strong execution and mentorship skills. Delivered critical infrastructure projects on time across cycles.", college: "IIT Bombay", score: 9.0 },
 ]
 
 const FIELD_STYLE = {
@@ -33,7 +33,7 @@ export default function ProfileForm({ form, onChange, loading }) {
 
   function loadRandom() {
     const seed = SEED_PROFILES[Math.floor(Math.random() * SEED_PROFILES.length)]
-    onChange(prev => ({ ...prev, ...seed }))
+    onChange({ ...form, ...seed })
   }
 
   return (
@@ -54,10 +54,10 @@ export default function ProfileForm({ form, onChange, loading }) {
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 16, marginBottom: 16 }}>
         {[
-          { label: "Name",         key: "name",    placeholder: "e.g. Salim Sheikh" },
-          { label: "Role",         key: "role",    placeholder: "e.g. Senior Engineer" },
-          { label: "College",      key: "college", placeholder: "e.g. IIT Bombay" },
-          { label: "Score (0-10)", key: "score",   placeholder: "8.5", type: "number" },
+          { label: "Name", key: "name", placeholder: "e.g. Salim Sheikh" },
+          { label: "Role", key: "role", placeholder: "e.g. Senior Engineer" },
+          { label: "College", key: "college", placeholder: "e.g. IIT Bombay" },
+          { label: "Score (0-10)", key: "score", placeholder: "8.5", type: "number" },
         ].map(({ label, key, placeholder, type }) => (
           <div key={key}>
             <p style={LABEL_STYLE}>{label}</p>
@@ -92,7 +92,7 @@ export default function ProfileForm({ form, onChange, loading }) {
         <p style={LABEL_STYLE}>
           Backend model
           <span style={{ color: "var(--muted)", fontWeight: 400, marginLeft: 8, textTransform: "none", letterSpacing: 0 }}>
-            (set via server env — selection logged only)
+            (used by the server for the audit run)
           </span>
         </p>
         <select

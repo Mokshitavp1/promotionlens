@@ -90,8 +90,9 @@ def _detect_bias_types(a_data: dict, b_data: dict) -> list[str]:
 async def run_audit(profile: ProfileInput):
     try:
         try:
-            variants = generate_variants(profile.model_dump())
-            responses = collect_responses(variants)
+            backend = (profile.model or os.getenv("LLM_BACKEND", "groq")).lower()
+            variants = generate_variants(profile.model_dump(), backend=backend)
+            responses = collect_responses(variants, backend=backend)
             cache_path = os.path.join(BASE_DIR, "responses_cache.json")
             with open(cache_path, "w") as f:
                 json.dump(responses, f)

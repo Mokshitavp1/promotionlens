@@ -14,48 +14,58 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Supported backends ────────────────────────────────────────────────────────
-BACKEND = os.getenv("LLM_BACKEND", "groq")  # "groq" | "openrouter" | "gemini"
+BACKEND = os.getenv("LLM_BACKEND", "groq").lower()  # "groq" | "openrouter" | "gemini" | "mock"
 
-if BACKEND == "groq":
+
+def _complete_groq(system: str, user: str, temperature: float = 0.0) -> str:
     from groq import Groq
-    _client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    _MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
-    def _complete(system: str, user: str, temperature: float = 0.0) -> str:
-        resp = _client.chat.completions.create(
-            model=_MODEL,
-            temperature=temperature,
-            messages=[{"role": "system", "content": system},
-                      {"role": "user",   "content": user}],
-        )
-        return resp.choices[0].message.content
+    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    resp = client.chat.completions.create(
+        model=os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"),
+        temperature=temperature,
+        messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+    )
+    return resp.choices[0].message.content
 
-elif BACKEND == "openrouter":
+
+def _complete_openrouter(system: str, user: str, temperature: float = 0.0) -> str:
     import requests as _req
-    _OR_KEY = os.getenv("OPENROUTER_API_KEY")
-    _MODEL  = os.getenv("OPENROUTER_MODEL", "mistralai/mistral-7b-instruct")
 
-    def _complete(system: str, user: str, temperature: float = 0.0) -> str:
-        r = _req.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={"Authorization": f"Bearer {_OR_KEY}",
-                     "Content-Type": "application/json"},
-            json={"model": _MODEL, "temperature": temperature,
-                  "messages": [{"role": "system", "content": system},
-                                {"role": "user",   "content": user}]},
-        )
-        r.raise_for_status()
-        return r.json()["choices"][0]["message"]["content"]
+    r = _req.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers={"Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}", "Content-Type": "application/json"},
+        json={
+            "model": os.getenv("OPENROUTER_MODEL", "mistralai/mistral-7b-instruct"),
+            "temperature": temperature,
+            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        },
+    )
+    r.raise_for_status()
+    return r.json()["choices"][0]["message"]["content"]
 
-else:  # gemini
+
+def _complete_gemini(system: str, user: str, temperature: float = 0.0) -> str:
     import google.generativeai as genai
-    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-    _gemini = genai.GenerativeModel("gemini-1.5-flash")
 
-    def _complete(system: str, user: str, temperature: float = 0.0) -> str:
-        full = f"{system}\n\n{user}"
-        cfg  = genai.types.GenerationConfig(temperature=temperature)
-        return _gemini.generate_content(full, generation_config=cfg).text
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+    gemini = genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-1.5-flash"))
+    full = f"{system}\n\n{user}"
+    cfg = genai.types.GenerationConfig(temperature=temperature)
+    return gemini.generate_content(full, generation_config=cfg).text
+
+
+def _complete(backend: str, system: str, user: str, temperature: float = 0.0) -> str:
+    backend = (backend or BACKEND).lower()
+    if backend == "groq":
+        return _complete_groq(system, user, temperature)
+    if backend == "openrouter":
+        return _complete_openrouter(system, user, temperature)
+    if backend == "gemini":
+        return _complete_gemini(system, user, temperature)
+    if backend == "mock":
+        raise RuntimeError("Mock backend should be handled before completion")
+    raise ValueError(f"Unsupported backend: {backend}")
 
 
 # ── Demographic variant templates ────────────────────────────────────────────
@@ -126,8 +136,11 @@ Rules:
 - Return ONLY the rewritten review text, no preamble."""
 
 
-def _rewrite_review(base_review: str, variant: dict) -> str:
+def _rewrite_review(base_review: str, variant: dict, backend: str = None) -> str:
     """Rewrite the base review text to match the variant's framing flavor."""
+    if (backend or BACKEND).lower() == "mock":
+        return base_review
+
     user = f"""
 Employee name: {variant['name']}
 College: {variant['college']}
@@ -140,7 +153,7 @@ Original review:
 Rewrite the review for this employee profile.
 """
     try:
-        return _complete(_REWRITE_SYSTEM, user, temperature=0.3).strip()
+        return _complete(backend, _REWRITE_SYSTEM, user, temperature=0.3).strip()
     except Exception as e:
         # Keep pipeline running under API throttling by falling back to base text.
         print(f"  [WARN] Review rewrite failed for {variant['id']}: {e}")
@@ -149,7 +162,7 @@ Rewrite the review for this employee profile.
 
 # ── Main public function ───────────────────────────────────────────────────────
 
-def generate_variants(base_profile: dict) -> list[dict]:
+def generate_variants(base_profile: dict, backend: str = None) -> list[dict]:
     """
     Accept a base employee profile dict and return a list of variant profile dicts.
 
@@ -165,10 +178,11 @@ def generate_variants(base_profile: dict) -> list[dict]:
     Output: list of variant dicts, each with the same keys + extra metadata fields.
     """
     variants_out = []
+    backend = (backend or BACKEND).lower()
 
     for v in VARIANTS:
         # Rewrite the review text to carry the flavor signal
-        rewritten_review = _rewrite_review(base_profile["review_text"], v)
+        rewritten_review = _rewrite_review(base_profile["review_text"], v, backend=backend)
 
         variant_profile = {
             # Core fields (same schema as base)
