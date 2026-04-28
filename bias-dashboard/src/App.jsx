@@ -25,7 +25,7 @@ async function fetchComparison(responses) {
     if (!r?.comparison) return null
     const comp = r.comparison
     comp.candidate_a_name = responses?.mohammed_jntu?.profile?.name || "Mohammed Khan"
-    comp.candidate_b_name = responses?.aarav_iit?.profile?.name    || "Aarav Shah"
+    comp.candidate_b_name = responses?.aarav_iit?.profile?.name || "Aarav Shah"
     return comp
   } catch {
     return null
@@ -40,7 +40,7 @@ async function fetchSupportingData() {
   ])
   return {
     leaderboard: lbResult.status === "fulfilled" ? lbResult.value?.leaderboard ?? [] : [],
-    policy:      policyResult.status === "fulfilled" ? policyResult.value?.policy ?? "" : "",
+    policy: policyResult.status === "fulfilled" ? policyResult.value?.policy ?? "" : "",
     trainingLog: trainResult.status === "fulfilled" ? trainResult.value?.training_log ?? [] : [],
   }
 }
@@ -51,14 +51,14 @@ const makeBlankForm = () => ({
 })
 
 export default function App() {
-  const [phase, setPhase]           = useState("idle")
+  const [phase, setPhase] = useState("idle")
   const [auditError, setAuditError] = useState(null)
-  const [profiles, setProfiles]     = useState([makeBlankForm()])
+  const [profiles, setProfiles] = useState([makeBlankForm()])
 
   const [batchResults, setBatchResults] = useState([])   // array of {profile, auditData, biasScore, comparison}
-  const [leaderboard, setLeaderboard]   = useState([])
-  const [policy, setPolicy]             = useState("")
-  const [trainingLog, setTrainingLog]   = useState(null)
+  const [leaderboard, setLeaderboard] = useState([])
+  const [policy, setPolicy] = useState("")
+  const [trainingLog, setTrainingLog] = useState(null)
 
   function updateProfile(idx, updated) {
     setProfiles(prev => prev.map((p, i) => i === idx ? updated : p))
@@ -85,12 +85,12 @@ export default function App() {
       const auditResults = await Promise.allSettled(valid.map(p => runAudit(p)))
 
       const succeeded = []
-      const errors    = []
+      const errors = []
 
       for (let i = 0; i < auditResults.length; i++) {
         const r = auditResults[i]
         if (r.status === "rejected" || r.value?.status === "error") {
-          errors.push(`${valid[i].name || `Profile ${i+1}`}: ${r.reason?.message || r.value?.message || "failed"}`)
+          errors.push(`${valid[i].name || `Profile ${i + 1}`}: ${r.reason?.message || r.value?.message || "failed"}`)
         } else {
           succeeded.push({ profile: valid[i], res: r.value })
         }
@@ -107,8 +107,8 @@ export default function App() {
         const comp = await fetchComparison(res.responses || {})
         return {
           profile,
-          auditData:  res,
-          biasScore:  computeBiasScore(res.bias_report),
+          auditData: res,
+          biasScore: computeBiasScore(res.bias_report),
           comparison: comp,
         }
       }))
@@ -296,10 +296,12 @@ export default function App() {
                   {policy && idx === 0 && <PolicyReport report={policy} />}
                 </div>
 
-                <ProbeResultCard
-                  results={auditData?.responses || {}}
-                  baselineName={profile.name}
-                />
+                {idx === 0 && (
+                  <ProbeResultCard
+                    results={auditData?.responses || {}}
+                    baselineName={profile.name}
+                  />
+                )}
 
                 {auditData?.bias_report?.adjectives && (
                   <AdjectiveBreakdown adjectives={auditData.bias_report.adjectives} />
