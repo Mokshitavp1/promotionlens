@@ -32,11 +32,20 @@ GROQ_FALLBACK_MODELS = [
     "mixtral-8x7b-32768",
 ]
 
+_GROQ_CLIENT = None
+
+
+def _get_groq_client():
+    global _GROQ_CLIENT
+    if _GROQ_CLIENT is None:
+        from groq import Groq
+
+        _GROQ_CLIENT = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    return _GROQ_CLIENT
+
 
 def _complete_groq(system: str, user: str, temperature: float = 0.0) -> str:
-    from groq import Groq
-
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    client = _get_groq_client()
     for model in GROQ_FALLBACK_MODELS:
         try:
             resp = client.chat.completions.create(
@@ -214,7 +223,7 @@ def collect_responses(variants: list[dict], system_prompt_override: str = None, 
             mock_data = json.load(f)
 
         for profile in variants:
-            variant_id = profile.get("_variant_id", profile["name"].lower().replace(" ", "_"))
+            variant_id = profile["_variant_id"]
             payload = mock_data.get(variant_id, {})
             parsed = payload.get("parsed", _heuristic_response(profile))
             raw = payload.get("raw_response", json.dumps(parsed))
@@ -227,7 +236,7 @@ def collect_responses(variants: list[dict], system_prompt_override: str = None, 
         return results
 
     for profile in variants:
-        variant_id = profile.get("_variant_id", profile["name"].lower().replace(" ", "_"))
+        variant_id = profile["_variant_id"]
         user_prompt = _build_promotion_prompt(profile)
         raw = ""  # Initialize raw before try block
 

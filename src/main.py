@@ -19,6 +19,7 @@ app.add_middleware(
 )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MOCK_DASHBOARD_PATH = os.path.join(BASE_DIR, "bias-dashboard", "src", "mockBiasData.json")
 
 class ProfileInput(BaseModel):
     name: str
@@ -47,8 +48,25 @@ def _load_latest_audit_responses() -> dict:
         lines = [l.strip() for l in f if l.strip()]
     if not lines:
         return {}
-    last = json.loads(lines[-1])
-    return last.get("responses", {})
+    try:
+        last = json.loads(lines[-1])
+        return last.get("responses", {})
+    except json.JSONDecodeError:
+        return {}
+
+
+def _load_json_file(path: str, default):
+    if not os.path.exists(path):
+        return default
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return default
+
+
+def _load_dashboard_mock() -> dict:
+    return _load_json_file(MOCK_DASHBOARD_PATH, {})
 
 def _get_score(d: dict) -> float:
     if "parsed" in d:
@@ -101,8 +119,7 @@ async def run_audit(profile: ProfileInput):
                 json.dump(responses, f)
         except Exception as e:
             print(f"Live API failed ({e}), falling back to mock...")
-            with open(mock_path) as f:
-                mock_payload = json.load(f)
+            mock_payload = _load_json_file(mock_path, {})
             responses = mock_payload.get("responses", mock_payload)
             bias_data = mock_payload.get("bias_report")
 
@@ -140,10 +157,15 @@ async def run_audit(profile: ProfileInput):
 async def train_agent(input: TrainInput):
     try:
         log_path = os.path.join(BASE_DIR, "training_log.json")
-        with open(log_path) as f:
-            full_log = json.load(f)
+        full_log = _load_json_file(log_path, [])
+        if not full_log:
+            full_log = _load_dashboard_mock().get("training_log", [])
         episodes = min(input.episodes, len(full_log))
-        return {"status": "success", "training_log": full_log[:episodes]}
+        return {
+            "status": "success",
+            "training_log": full_log[:episodes],
+            "source": "generated" if os.path.exists(log_path) else "mock",
+        }
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
@@ -165,8 +187,7 @@ async def compare_candidates(input: CompareInput):
         if not responses:
             cache_path = os.path.join(BASE_DIR, "responses_cache.json")
             if os.path.exists(cache_path):
-                with open(cache_path) as f:
-                    responses = json.load(f)
+                responses = _load_json_file(cache_path, {})
 
         a_key  = input.candidate_a.lower()
         b_key  = input.candidate_b.lower()
@@ -227,8 +248,9 @@ async def compare_candidates(input: CompareInput):
 async def compare_models():
     try:
         leaderboard_path = os.path.join(BASE_DIR, "leaderboard.json")
-        with open(leaderboard_path) as f:
-            data = json.load(f)
+        data = _load_json_file(leaderboard_path, [])
+        if not data:
+            data = _load_dashboard_mock().get("leaderboard", [])
         return {
             "status": "success",
             "summary": {
@@ -250,8 +272,9 @@ async def compare_models():
 async def get_leaderboard():
     try:
         leaderboard_path = os.path.join(BASE_DIR, "leaderboard.json")
-        with open(leaderboard_path) as f:
-            data = json.load(f)
+        data = _load_json_file(leaderboard_path, [])
+        if not data:
+            data = _load_dashboard_mock().get("leaderboard", [])
         return {"status": "success", "leaderboard": data}
     except Exception as e:
         return {"status": "error", "message": str(e)}

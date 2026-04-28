@@ -1,8 +1,7 @@
 # src/intervention_engine.py
 import copy
-import json
 
-def apply_intervention(action: int, base_profile: dict, current_responses: dict) -> dict:
+def apply_intervention(action: int, base_profile: dict) -> dict:
     """
     Returns a modified profile dict that response_collector will use.
     The modification is stored in a special key '_system_prompt_override'

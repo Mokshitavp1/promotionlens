@@ -42,12 +42,14 @@ def _classify_parsed_adjectives(parsed: dict) -> dict:
     agentic = []
     communal = []
     for word in parsed.get("adjectives_used", []):
+        if len(agentic) >= 4 and len(communal) >= 4:
+            break
         norm = str(word).strip().lower()
-        if norm in AGENTIC_WORDS:
+        if norm in AGENTIC_WORDS and len(agentic) < 4:
             agentic.append(norm)
-        if norm in COMMUNAL_WORDS:
+        if norm in COMMUNAL_WORDS and len(communal) < 4:
             communal.append(norm)
-    return {"agentic": agentic[:4], "communal": communal[:4]}
+    return {"agentic": agentic, "communal": communal}
 
 def extract_adjectives(text: str) -> dict:
     try:

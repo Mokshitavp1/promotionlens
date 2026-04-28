@@ -103,7 +103,7 @@ export default function App() {
       }
 
       // Build batch results with comparison per profile
-      const batch = await Promise.all(succeeded.map(async ({ profile, res }) => {
+      const batchPromise = Promise.all(succeeded.map(async ({ profile, res }) => {
         const comp = await fetchComparison(res.responses || {})
         return {
           profile,
@@ -112,8 +112,9 @@ export default function App() {
           comparison: comp,
         }
       }))
+      const supportingPromise = fetchSupportingData()
 
-      const supporting = await fetchSupportingData()
+      const [batch, supporting] = await Promise.all([batchPromise, supportingPromise])
 
       setBatchResults(batch)
       setLeaderboard(supporting.leaderboard)

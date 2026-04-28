@@ -4,19 +4,19 @@
 # Best action sequence: Action 7 (no-op) → Action 0 (fairness) → Action 1 (blinding) → Action 2 (rubric)
 # Converged in ~500 episodes with PPO MlpPolicy, total_timesteps=1000
 
-from probe_generator import generate_variants
+import os
+import sys
+
 import gymnasium as gym
 import numpy as np
 from gymnasium import spaces
-import sys
-import os
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from bias_scorer import compute_bias_state
 from intervention_engine import apply_intervention
-from result_collector import collect_responses
 from probe_generator import generate_variants
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from result_collector import collect_responses
 
 class BiasEnv(gym.Env):
     def __init__(self, base_profile: dict):
@@ -50,9 +50,7 @@ class BiasEnv(gym.Env):
         self.episode_step += 1
 
         # Apply intervention and get modified profile/prompt
-        modified_profile = apply_intervention(
-            action, self.base_profile, self.current_responses
-        )
+        modified_profile = apply_intervention(action, self.base_profile)
 
         # Re-run probe with modified profile
         modified_variants = generate_variants(modified_profile)
